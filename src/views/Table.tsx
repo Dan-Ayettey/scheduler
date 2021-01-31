@@ -58,14 +58,18 @@ export const TableRow = (props:{
                         }} value={modalTask}/>
 
                         <Text>{'Task to                                                                '}</Text>
+                        <View style={styles.taskTo}>
                         <Picker  style={[styles.modalText]} onValueChange={(value)=>{
                             setSelectedValue(''+value)
                         }} selectedValue={selectedValue}>
                             {['Dan','Daneil','Dan','Daneil'].
-                            map((value, index) =>  <Picker.Item label={value}  key={index} value={value}/>)}
+                            map((value, index) =>  (<Picker.Item label={value}  key={index} value={value}/>))}
 
                         </Picker>
-
+                            <TouchableOpacity >
+                                <FontAwesome name={'plus'} size={20} color={systemColor.backgroundColor}/>
+                            </TouchableOpacity>
+                        </View>
                         <Text>{'Enter comment                                                                 '}</Text>
                         <TextInput placeholder={'Comments'} multiline={true} style={[styles.modalText]} onChangeText={(value)=>{
                             setIModalTask(value)

@@ -46,14 +46,14 @@ export class UserModel {
         return this.password;
     }
 
-    public setStart=(start:string)=>{
+    public setStart= (start: { hour: string; minutes: string })=>{
         this.start=start;
     }
 
     getStart=()=>{
         return this.start;
     }
-    public setEnd=(end:string)=>{
+    public setEnd= (end: { hour: string; minutes: string })=>{
         this.end=end;
     }
 
@@ -76,7 +76,7 @@ export class UserModel {
         return this.day;
     }
 
-    public setTask=(task:[{}])=>{
+    public setTask= (task: [])=>{
         this.task=task;
     }
 
@@ -85,5 +85,13 @@ export class UserModel {
     }
     private telephone: string='';
 
+    private date={ day:'', month: '', year: '' };
 
+
+    setDate=(date: {day:string,month:string,year:string}) =>{
+        this.date=date
+    }
+    getDate=()=>{
+       return  this.date
+       }
 }

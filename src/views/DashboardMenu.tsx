@@ -45,13 +45,18 @@ export const DashboardMenuItems=function () {
                         }} value={modalTask}/>
 
                         <Text>{'Task to                                                                '}</Text>
-                        <Picker  style={[styles.modalText]} onValueChange={(value)=>{
-                            setSelectedValue(''+value)
-                        }} selectedValue={selectedValue}>
-                            {['Dan','Daneil','Dan','Daneil'].
-                            map((value, index) =>  <Picker.Item label={value}  key={index} value={value}/>)}
+                        <View style={styles.taskTo}>
+                            <Picker  style={[styles.modalText]} onValueChange={(value)=>{
+                                setSelectedValue(''+value)
+                            }} selectedValue={selectedValue}>
+                                {['Dan','Daneil','Dan','Daneil'].
+                                map((value, index) =>  (<Picker.Item label={value}  key={index} value={value}/>))}
 
-                        </Picker>
+                            </Picker>
+                            <TouchableOpacity >
+                                <FontAwesome name={'plus'} size={20} color={systemColor.backgroundColor}/>
+                            </TouchableOpacity>
+                        </View>
 
                         <Text>{'Enter comment                                                                 '}</Text>
                         <TextInput placeholder={'Comments'} multiline={true} style={[styles.modalText]} onChangeText={(value)=>{
@@ -118,7 +123,7 @@ export const DashboardMenuItems=function () {
             }
 
             {
-                isLog  && !isCalendar? <ActivitiesLog/> : null
+                isLog  && !isCalendar? <ActivitiesLog/> : isCalendar ? null:<ActivitiesLog/>
             }
 
 

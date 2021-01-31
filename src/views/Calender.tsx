@@ -1,7 +1,10 @@
-import { FlatList, Text, TouchableOpacity, View } from "react-native";
+import { FlatList, SafeAreaView, Text, TouchableOpacity, View } from "react-native";
 import { styles, systemColor } from "../styles/style";
 import React, { useState } from "react";
 import { reduxDispatch, reduxReduce, reduxSubscribe } from "../models/ReduxModel";
+import { ActivitiesLog } from "./Activities";
+import { UserModel } from "../models/UserModel";
+import { UserController } from "../controllers/userController";
 
 export const date:Date=new Date()
 export const calendar={
@@ -33,7 +36,7 @@ export const Months=()=>{
 
     const dateSwitch=(index:number)=>{
 
-        day[28]=28;
+
         day[29]=29;
         day[30]=30;
         day[31]=31;
@@ -43,7 +46,7 @@ export const Months=()=>{
                 delete day[29];
                 delete day[30];
                 delete day[31];
-                console.log(index)
+
                 setDay(day)
                 break;
             case 3:
@@ -84,9 +87,10 @@ export const Months=()=>{
                 setDay(calendar.day)
         }
     }
+
     const [monthSignal,setMonthSignal]=useState(calendar.monthIndex);
     return(
-
+         <View>
         <View style={styles.monthContainer}>
 
     <FlatList  horizontal={true} showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false}
@@ -109,15 +113,21 @@ export const Months=()=>{
         </TouchableOpacity>)}}
         keyExtractor={((item, index) => index.toString())}
         />
-
+        </View>
+         <DayName/>
+        <Dates day={day}/>
 
         </View>
-    )
+
+
+)
 }
 
 export  const DayName=function (){
 
     const [daySignal,setDaySignal]=useState(calendar.dayIndex-1);
+
+    daySignal ===-1 ? setDaySignal(6):null
     return (
         <View >
             {/*Days name*/}
@@ -134,11 +144,15 @@ export  const DayName=function (){
     )
 }
 
-export const Dates=function () {
+export const Dates=function (props:{
+    day:number [];
+}) {
     const [signal,setSignal]=useState(calendar.dateIndex-1);
-    const [day,setDay]=useState(calendar.day);
+    const [day,setDay]=useState(props.day);
+    const model=new UserModel()
+    const userController=new UserController(model)
 
-
+    day.length > props.day.length ? setDay(props.day):null
     const initialState = {
         isLoading: false,
         items: [{
@@ -147,6 +161,7 @@ export const Dates=function () {
         }],
         hasError: false
     };
+
  return(
      <View>
          {/*dates bar*/}
@@ -162,6 +177,8 @@ export const Dates=function () {
 
                            <TouchableOpacity activeOpacity={10} style={[styles.monthNumber]} onPress={()=>{
                                setSignal(index)
+                               userController.setDate({day:''+index,month:'',year:''})
+
                            }}>
 
                                <Text style={[styles.monthText]}  onPress={()=>{
@@ -169,7 +186,9 @@ export const Dates=function () {
                                    reduxReduce(initialState,{type:'STATUS',loading:'loading..',items:['1',4,6]});
                                    reduxDispatch({type:'STATUS',loading:'loading..',items:['1',4,6]})
                                    reduxSubscribe((state:any)=>{
-                                       console.log(state)
+
+                                       setSignal(index)
+                                       userController.setDate({day:''+index,month:'',year:''})
                                    })
 
                                }}>

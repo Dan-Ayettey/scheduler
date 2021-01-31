@@ -53,6 +53,7 @@ return (
                           remove
                       </Text>
                   </TouchableOpacity>
+                  <Text  style={styles.logCrudTotalHours}><Text>Total hours: </Text>{6}{'hrs'}</Text>
               </View>
         </SafeAreaView>
 

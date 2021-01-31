@@ -13,6 +13,16 @@ export const systemColor={
 
 
 };
+export const shadow={
+    shadowColor: "#000",
+    shadowOffset: {
+        width: 0,
+        height: 2
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5
+}
 export const systemBar={
 
     backgroundColor:'rgb(16,125,213)',
@@ -340,10 +350,10 @@ export const systemBar={
          shadowColor: systemBar.backgroundColor,
          shadowOffset: {
              width: 0,
-             height: 2
+             height: 0
          },
 
-         elevation: 25,
+         elevation: 17,
          borderRadius:8,
      },
      bar: {
@@ -532,28 +542,12 @@ export const systemBar={
          margin:10,
          marginLeft:30,
          marginRight:30,
-         shadowColor: "#000",
-         shadowOffset: {
-             width: 0,
-             height: 2
 
-         },
-         shadowOpacity: 0.25,
-         shadowRadius: 1.84,
-         elevation: 4
      },
      PickTimeContainer: {
          flexDirection:'row',
          justifyContent:'space-evenly',
-         shadowColor: "#ffffff",
-         shadowOffset: {
-             width: 0,
-             height: 2
 
-         },
-         shadowOpacity: 0.1,
-         shadowRadius: 1,
-         elevation: 40
      },
 
 
@@ -581,15 +575,7 @@ export const systemBar={
          margin:4,
          justifyContent:'space-evenly',
          alignItems:'center',
-         shadowColor: "#ffffff",
-         shadowOffset: {
-             width: 0,
-             height: 1
 
-         },
-         shadowOpacity: 0.1,
-         shadowRadius: 1,
-         elevation: 40
      },
      dayName:{
          borderRadius: 20,
@@ -599,14 +585,7 @@ export const systemBar={
          backgroundColor:systemColor.backgroundColor,
          fontSize:13,
          fontWeight:'bold',
-         shadowColor: "#000",
-         shadowOffset: {
-             width: 0,
-             height: 2
-         },
-         shadowOpacity: 0.25,
-         shadowRadius: 3.84,
-         elevation: 5
+
      },
      month: {
 
@@ -619,14 +598,7 @@ export const systemBar={
          backgroundColor:systemColor.backgroundColor,
          fontSize:13,
          fontWeight:'bold',
-         shadowColor: "#000",
-         shadowOffset: {
-             width: 0,
-             height: 2
-         },
-         shadowOpacity: 0.25,
-         shadowRadius: 3.84,
-         elevation: 5
+         ...shadow
      },
      dateNumbersContainer: {
         marginLeft:3,
@@ -653,13 +625,7 @@ export const systemBar={
          paddingTop:7,
          margin:1,
          borderRadius:20,
-         shadowColor: "#e5e6e8",
-         shadowOffset: {
-             width: 0,
-             height: 2
-         },
-         shadowOpacity: 0.0,
-         shadowRadius: 1.84,
+
 
      },
      userActivities: {
@@ -667,13 +633,7 @@ export const systemBar={
          left:-19,
          zIndex:100,
          shadowColor: "#000",
-         shadowOffset: {
-             width: 0,
-             height: 2
-         },
-         shadowOpacity: 0.25,
-         shadowRadius: 3.84,
-         elevation: 5
+
      },
 
      appBarIconMessageAlertUser: {
@@ -755,15 +715,20 @@ export const systemBar={
          padding:6
      },
      save: {
-         shadowColor: systemBar.backgroundColor,
-         shadowOffset: {
-             width: 0,
-             height: 2
-         },
 
-         elevation: 20,
-         borderRadius:4,
+         borderRadius:80,
 
+     },
+     taskTo: {
+         flexDirection:'row'
+     },
+     logCrudTotalHours: {
+
+         color:systemColor.backgroundColor,
+         borderRadius:6,
+         marginLeft:19,
+         marginRight:4,
+         padding:6
      }
 
  });

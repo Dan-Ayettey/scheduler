@@ -50,8 +50,6 @@ export const CalenderItems=()=>{
         <SafeAreaView>
             <PickTime/>
             <Months/>
-            <DayName/>
-            <Dates/>
 
         </SafeAreaView>
             )

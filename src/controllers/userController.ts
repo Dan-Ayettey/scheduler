@@ -25,11 +25,11 @@ export class UserController {
     }
 
 
-    public setStart=(start:string)=>{
+    public setStart= (start: { hour: string; minutes: string })=>{
         this.userModel.setStart(start);
     }
 
-    public setEnd=(end:string)=>{
+    public setEnd= (end: { hour: string; minutes: string })=>{
         this.userModel.setEnd(end);
     }
 
@@ -43,8 +43,11 @@ export class UserController {
         this.userModel.setDay(day);
     }
 
-    public setTask=(task:[{}])=>{
+    public setTask=(task:[])=>{
         this.userModel.setTask(task);
     }
 
+    setDate=(date: {day:string,month:string,year:string}) =>{
+        this.userModel.setDate(date)
+    }
 }
