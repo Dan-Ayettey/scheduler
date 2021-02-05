@@ -4,14 +4,14 @@ export class UserController {
     private userModel: UserModel;
 
     constructor(userModel:UserModel) {
-        this.userModel=userModel
+        this.userModel=userModel;
     }
     public setFirstName=(firstName:string)=>{
-        this.setFirstName(firstName);
+        this.userModel.setFirstName(firstName);
     }
 
 
-    public setLast=(lastName:string)=>{
+    public setLastName=(lastName:string)=>{
         this.userModel.setLast(lastName);
     }
 
@@ -24,16 +24,28 @@ export class UserController {
         this.userModel.setPassword(password);
     }
 
-
-    public setStart= (start: { hour: string; minutes: string })=>{
+    public setTag(tag: string) {
+        this.userModel.setTag(tag)
+    }
+    public setStart= (start: { hour: string, minutes: string })=>{
         this.userModel.setStart(start);
     }
 
-    public setEnd= (end: { hour: string; minutes: string })=>{
+    public setEnd= (end: { hour: string, minutes: string })=>{
         this.userModel.setEnd(end);
     }
-
-
+   public setDayIndex(dateIndex:number){
+        this.userModel.setDateIndex(dateIndex);
+    }
+    public setDayName(dayName:string){
+        this.userModel.setDayName(dayName);
+    }
+    public setMonthIndex(dayIndex:number){
+        this.userModel.setMonthIndex(dayIndex);
+    }
+     public setTodayDate(todayDate:string){
+        this.userModel.setTodayDate(todayDate);
+     }
     public setMonth=(month:string)=>{
         this.userModel.setMonth(month);
     }
@@ -43,11 +55,16 @@ export class UserController {
         this.userModel.setDay(day);
     }
 
-    public setTask=(task:[])=>{
+    public setTask= (task: [])=>{
         this.userModel.setTask(task);
     }
 
-    setDate=(date: {day:string,month:string,year:string}) =>{
+    setDate=(date: {date:string,month:string,year:string}) =>{
         this.userModel.setDate(date)
+    }
+
+
+    setCellNumber(number: string) {
+        this.userModel.setCellNumber(number)
     }
 }

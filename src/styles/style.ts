@@ -5,7 +5,7 @@ export const systemColor={
     colors:{
         white:'white',
         borderColorLight:'rgb(241,241,241)',
-        borderInherit:'rgb(16,138,236)'
+        borderInherit:'#000'
     },
     color:'white',
     fontSize: 20,
@@ -40,197 +40,10 @@ export const systemBar={
     },
 
      footerContainer: {
-         position:'absolute',
-         bottom:0,
-         margin:0,
-         padding:0,
-         width:'100%',
+        height:36,
          backgroundColor:systemColor.backgroundColor
      },
-/*
-     mainMenuItems: {
-     marginLeft:50,
-     marginRight:50,
-         shadowColor: "#000",
-         shadowOffset: {
-             width: 0,
-             height: 2
-         },
-         shadowOpacity: 0.25,
-         shadowRadius: 3.84,
-         elevation: 5
-     },
-     month: {
 
-         borderRadius: 40,
-         flexDirection: "column",
-         margin:5,
-         marginBottom:2,
-         padding:5.6,
-         backgroundColor:systemColor.backgroundColor,
-         fontSize:13,
-         fontWeight:'bold',
-         shadowColor: "#000",
-         shadowOffset: {
-             width: 0,
-             height: 2
-         },
-         shadowOpacity: 0.25,
-         shadowRadius: 3.84,
-         elevation: 5
-     },
-
-
-     monthNumber: {
-         textAlign:'center',
-         borderRadius: 4,
-         margin:1,
-         backgroundColor:systemColor.backgroundColor,
-         padding:14,
-         shadowColor: "#000",
-         shadowOffset: {
-             width: 0,
-             height: 2
-         },
-         shadowOpacity: 0.25,
-         shadowRadius: 3.84,
-         elevation: 5
-
-     },
-     monthText: {
-     width:40,
-         borderRadius: 40,
-       textAlign:'center',
-         shadowColor: "#e5e6e8",
-         shadowOffset: {
-             width: 0,
-             height: 2
-         },
-         shadowOpacity: 0.0,
-         shadowRadius: 3.84,
-         elevation: 20
-
-     },
-
-
-
-     editor: {
-         flexDirection: "row",
-         justifyContent: "space-evenly",
-         alignItems: "center",
-         borderTopEndRadius: 10,
-         borderTopStartRadius: 10,
-         height: 50,
-         flexWrap:'wrap',
-         shadowColor: "#000",
-         shadowOffset: {
-             width: 0,
-             height: 2
-         },
-         shadowOpacity: 0.25,
-         shadowRadius: 3.84,
-         elevation: 5
-     },
-   logHeader: {
-         flexDirection: "row",
-         justifyContent: "space-evenly",
-         alignItems: "center",
-         borderTopEndRadius: 10,
-         borderTopStartRadius: 10,
-         flexWrap:'wrap',
-         height: 30
-
-     },
-       tableHeader: {
-             flexDirection: "row",
-             justifyContent: "space-around",
-             alignItems: "flex-start",
-             backgroundColor: systemColor.backgroundColor,
-             borderTopEndRadius: 10,
-             borderTopStartRadius: 10,
-            flexWrap:'wrap',
-            color:'white',
-            padding:10,
-           shadowColor: "#000",
-           shadowOffset: {
-               width: 0,
-               height: 2
-           },
-           shadowOpacity: 0.25,
-           shadowRadius: 3.84,
-           elevation: 5
-
-         },
-     tableHeaderData: {
-         flexDirection: "row",
-         justifyContent: "flex-end",
-         alignItems: "flex-start",
-         flexWrap:'wrap',
-         color:'white',
-
-
-     },
-     tableRowData: {
-         flexDirection: "row",
-         justifyContent: "space-around",
-         alignItems: "flex-start",
-         borderTopEndRadius: 10,
-         borderTopStartRadius: 10,
-         flexWrap:'wrap',
-         color:'white',
-         padding:2,
-         paddingLeft:10,
-         paddingRight:10,
-         shadowColor: "#000",
-         shadowOffset: {
-             width: 0,
-             height: 2
-         },
-         shadowOpacity: 0.25,
-         shadowRadius: 3.84,
-         elevation: 5
-     },
-     tableRowDataText:{
-         padding:10,
-         shadowColor: "#000",
-         shadowOffset: {
-             width: 0,
-             height: 2
-         },
-         shadowOpacity: 0.25,
-         shadowRadius: 3.84,
-         elevation: 5
-     },
-     taskButton: {
-         padding:4,
-         borderRadius:4,
-         marginLeft:16,
-         marginTop:4,
-         backgroundColor:systemColor.backgroundColor,
-         color:systemColor.color,
-         shadowColor: "#000",
-         shadowOffset: {
-             width: 0,
-             height: 2
-         },
-         shadowOpacity: 0.25,
-         shadowRadius: 3.84,
-         elevation: 5
-     },
-     taskButtonIcon: {
-
-         color:systemColor.color,
-         shadowColor: "#000",
-         shadowOffset: {
-             width: 0,
-             height: 2
-         },
-         shadowOpacity: 0.25,
-         shadowRadius: 3.84,
-         elevation: 5
-
-     },
-*/
      centeredView: {
          flex: 1,
          justifyContent: "center",
@@ -347,6 +160,7 @@ export const systemBar={
          marginLeft:40,
          color:systemColor.color,
 
+         padding:4,
          shadowColor: systemBar.backgroundColor,
          shadowOffset: {
              width: 0,
@@ -354,188 +168,14 @@ export const systemBar={
          },
 
          elevation: 17,
-         borderRadius:8,
+         borderRadius:20,
      },
      bar: {
          margin:8
      },
 
-
-     /*
-     mainMenuItemsContainer: {
-         flexDirection:'row',
-         justifyContent:'center',
-         alignItems:'center',
-         marginTop:420,
-         marginBottom:10,
-         width:'100%',
-         height:45,
-         shadowColor: "#000",
-         shadowOffset: {
-             width: 0,
-             height: 2
-         },
-         shadowOpacity: 0.25,
-         shadowRadius: 3.84,
-         elevation: 5
-
-     },
-
-     mainItem: {
-         marginLeft:40,
-         marginRight:40,
-         shadowColor: "#000",
-         shadowOffset: {
-             width: 0,
-             height: 2
-         },
-         shadowOpacity: 25,
-         shadowRadius: 3.84,
-         elevation: 50
-
-     },
-
-     timeContainer:{
-         flexDirection:'row',
-         justifyContent:'center',
-         width:'100%',
-         height:40
-
-
-
-     },
-
-     textInTime: {
-         borderWidth:1,
-         margin:4,
-         borderRadius: 4,
-         textAlign:'center',
-         padding:4,
-         width:60,
-         height:40,
-         borderColor:systemColor.backgroundColor,
-
-     },
-     end: {
-     marginTop:16
-     },
-     sysTime: {
-
-         margin:10,
-         padding:4,
-         borderRadius:10,
-         backgroundColor:systemColor.backgroundColor,
-         color:systemColor.color,
-         textAlign:'center'
-     },
-     sysTimeContainer: {
-         position:'absolute',
-         top:-10,
-         borderRadius:10,
-         shadowColor: "#000",
-         shadowOffset: {
-             width: 0,
-             height: 2
-         },
-         shadowOpacity: 0.25,
-         shadowRadius: 3.84,
-         elevation: 5
-     },
-     monthContainer:{
-         marginRight:4,
-         marginLeft:4,
-         padding:4,
-
-
-     },
-     save: {
-         shadowColor: systemBar.backgroundColor,
-         shadowOffset: {
-             width: 0,
-             height: 2
-         },
-
-         backgroundColor:'rgb(19,170,82)',
-         elevation: 20,
-         borderRadius:8,
-         padding:4,
-
-     },
-     dayNameContainer: {
-        flexDirection:'row',
-         alignItems:'center',
-         justifyContent:'center',
-         shadowColor: "#000",
-         shadowOffset: {
-             width: 0,
-             height: 2
-         },
-         shadowOpacity: 0.25,
-         shadowRadius: 3.84,
-         elevation: 5
-     },
-     dayName: {
-        backgroundColor:systemColor.backgroundColor,
-         padding:4,
-         borderRadius:40,
-         borderWidth:1,
-         borderColor:systemColor.backgroundColor,
-         shadowColor: "#000",
-         shadowOffset: {
-             width: 0,
-             height: 2
-         },
-         shadowOpacity: 0.25,
-         shadowRadius: 3.84,
-         elevation: 5
-     },
-     modalTextSendTo:{
-         marginBottom: 15,
-         shadowColor: "#000",
-         marginLeft:2,
-         height:80,
-         borderWidth:1,
-         borderRadius: 4,
-         borderColor:systemColor.backgroundColor,
-     },
-     taskSendTo: {
-        flexDirection:'row',
-     },
-
-
-     logCrud: {
-        flexDirection:'row',
-         borderBottomWidth:1,
-         borderTopWidth:1,
-         borderTopColor:'rgb(234,232,232)',
-         borderBottomColor:'rgb(234,232,232)'
-     },
-     logCrudTool: {
-        color:systemColor.color,
-         margin:8,
-         padding:6,
-         borderRadius:4,
-         backgroundColor:systemColor.backgroundColor,
-
-     },
-     logTableData: {
-        marginLeft:20,
-        marginRight:22,
-         shadowColor: "#000",
-         shadowOffset: {
-             width: 0,
-             height: 2
-         },
-         shadowOpacity: 0.25,
-         shadowRadius: 3.84,
-         elevation: 5
-     }*/
      dashboardMenuItemsContainer: {
-
-
          flexDirection:'row',
-         marginTop:130,
-         marginBottom:20,
          justifyContent:'space-evenly'
      },
      mainItem: {
@@ -584,7 +224,7 @@ export const systemBar={
          padding:6,
          backgroundColor:systemColor.backgroundColor,
          fontSize:13,
-         fontWeight:'bold',
+         fontWeight:'normal',
 
      },
      month: {
@@ -597,7 +237,6 @@ export const systemBar={
          padding:6,
          backgroundColor:systemColor.backgroundColor,
          fontSize:13,
-         fontWeight:'bold',
          ...shadow
      },
      dateNumbersContainer: {
@@ -674,6 +313,7 @@ export const systemBar={
      logHeader: {
          flexDirection:'row',
          padding:10,
+
          justifyContent:'space-evenly',
          alignItems:'center',
          shadowColor: "#ffffff",
@@ -693,7 +333,6 @@ export const systemBar={
      logCrudContainer: {
          flexDirection:'row',
          padding:10,
-
          justifyContent:'flex-start',
          alignItems:'flex-start',
          shadowColor: "#ffffff",
@@ -702,11 +341,13 @@ export const systemBar={
              height: 1
 
          },
+
          shadowOpacity: 0.1,
          shadowRadius: 1,
          elevation: 40
      },
      logCrudTool: {
+
          backgroundColor:systemColor.backgroundColor,
          color:'white',
          borderRadius:6,
@@ -716,7 +357,10 @@ export const systemBar={
      },
      save: {
 
-         borderRadius:80,
+         borderRadius:4,
+         backgroundColor:'rgb(88,179,24)',
+         paddingBottom:2,
+         paddingTop:2
 
      },
      taskTo: {
@@ -729,6 +373,109 @@ export const systemBar={
          marginLeft:19,
          marginRight:4,
          padding:6
+     },
+     loginContainer: {
+
+     },
+     loginInputsContainer: {
+        marginTop:10,
+         flexDirection:'column',
+         justifyContent:'space-evenly',
+         alignContent:'center',
+         alignSelf:'center'
+     },
+     loginWithContainer:{
+         flexDirection:'row',
+         justifyContent:'space-evenly'
+     },
+     loginTitle: {
+       fontSize:20,
+     },
+     loginHeading:{
+        margin :20,
+         marginTop:40,
+         fontSize:20,
+         fontWeight:'bold'
+     },
+     loginWith: {
+        margin:8,
+        marginLeft:20,
+     },
+     loginInput: {
+
+             marginBottom: 15,
+             height:38,
+             flexWrap:'wrap',
+             shadowColor: "#000",
+             padding:5,
+
+             textAlign: "left",
+             borderWidth:1,
+             margin:4,
+             borderRadius: 4,
+             width:250,
+             overflow:'scroll',
+             borderColor:systemColor.backgroundColor,
+             color:'black'
+     },
+     loginButton: {
+        backgroundColor:systemColor.backgroundColor,
+         padding:12,
+         paddingLeft:20,
+         paddingRight:20,
+         color:systemColor.color,
+         fontWeight:'bold',
+         fontSize:16,
+         borderRadius: 4,
+
+     },
+     loginButtonSignUp: {
+
+         padding:12,
+         paddingLeft:20,
+         paddingRight:20,
+         color:systemColor.backgroundColor,
+         fontWeight:'bold',
+         fontSize:16,
+         borderRadius: 4,
+
+     },
+     loginButtonContainer: {
+        flexDirection:'row',
+         justifyContent:'space-between'
+     },
+     initSceneContainer: {
+
+             flexDirection:'row',
+             justifyContent:'center',
+             alignSelf:'center',
+             alignContent:'center',
+     },
+     loginItems: {
+       marginTop:130
+     },
+     register: {
+         marginTop:80
+     },
+     dashboardContent:{
+
+
+     },
+     dashBoardContainer: {
+      flex:1
+     },
+     loginDashBoardContainer: {
+         flexDirection:'column',
+         justifyContent:'space-evenly',
+         alignContent:'center',
+         alignSelf:'center'
+     },
+     activitiesContainer:{
+         flexDirection:'row',
+         width:'100%',
+         borderRadius:4,
+         justifyContent:'space-evenly',
+         alignItems:'center',
      }
 
  });

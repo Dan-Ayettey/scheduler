@@ -2,69 +2,94 @@
 export class UserModel {
     private  firstName:string='';
     private lastName: string='';
+    private  location: string='';
+    private  longitude:string='';
+    private latitude: string='';
+    private longitudeDelta:string='';
+    private latitudeDelta: string='';
     private email: string='';
+    private todayDate:string='';
     private password: string='';
-    private start: string='';
-    private end: string='';
+    private start: { hour: string, minutes: string }={hour: '', minutes: ''};
+    private end: { hour: string, minutes: string }={hour: '', minutes: ''};
     private month: string='';
     private day: string='';
-    private task= [{}];
+    private task:string []=[];
+    private dayName: string='';
+    private telephone: string='';
+    private date: { date: string, month: string, year: string } ={ date:'', month: '', year: '' };
+    private monthIndex: number=0;
+    private dateIndex: number=0;
+
     public setFirstName=(firstName:string)=>{
        this.firstName=firstName;
        }
 
-    getFirstName=()=>{
+    public setDayName=(dayName:string)=>{
+        this.dayName=dayName;
+    }
+    public getFirstName=()=>{
          return this.firstName;
        }
 
+    public getDayName=()=>{
+        return this.dayName;
+    }
+    public setTodayDate=(todayDate:string)=>{
+        this.todayDate=todayDate;
+    }
+
+    public getTodayDate=()=>{
+        return this.todayDate;
+    }
     public setLast=(lastName:string)=>{
         this.lastName=lastName;
     }
 
-    getLastName=()=>{
+    public getLastName=()=>{
         return this.lastName;
     }
     public setTelephone=(telephone:string)=>{
         this.telephone=telephone;
     }
 
-    getTelephone=()=>{
+    public getTelephone=()=>{
         return this.telephone;
     }
     public setEmail=(email:string)=>{
         this.email=email;
     }
 
-    getEmail=()=>{
+    public getEmail=()=>{
         return this.email;
     }
     public setPassword=(password:string)=>{
         this.password=password;
     }
 
-    getPassword=()=>{
+    public getPassword=()=>{
         return this.password;
     }
 
-    public setStart= (start: { hour: string; minutes: string })=>{
+    public setStart= (start: { hour: string, minutes: string })=>{
         this.start=start;
     }
 
-    getStart=()=>{
+    public getStart=()=>{
         return this.start;
     }
-    public setEnd= (end: { hour: string; minutes: string })=>{
+    public setEnd= (end: { hour: string, minutes: string })=>{
         this.end=end;
     }
 
-    getEnd=()=>{
+    public getEnd=()=>{
         return this.end;
     }
     public setMonth=(month:string)=>{
         this.month=month;
     }
 
-    getMonth=()=>{
+    public getMonth=()=>{
         return this.month;
     }
 
@@ -72,7 +97,7 @@ export class UserModel {
         this.day=day;
     }
 
-    getDay=()=>{
+   public getDay=()=>{
         return this.day;
     }
 
@@ -80,18 +105,109 @@ export class UserModel {
         this.task=task;
     }
 
-    getTask=()=>{
+   public getTask=()=>{
         return this.task;
     }
-    private telephone: string='';
 
-    private date={ day:'', month: '', year: '' };
-
-
-    setDate=(date: {day:string,month:string,year:string}) =>{
+    public setDate= (date: { date: string, month: string, year: string }) =>{
         this.date=date
     }
-    getDate=()=>{
+    public getDate=()=>{
        return  this.date
        }
+    private tag: string[]=[];
+    private cellNumber: string='';
+    private contact=[];
+    private isNotify: number=0;
+    public setTag(tag: string) {
+        this.tag.push(tag)
+    }
+    public setIsNotify(isNotify:number) {
+        this.isNotify=isNotify
+    }
+    public setConatct(contact: []) {
+        this.contact = contact
+    }
+
+    public setCellNumber(cellNumber: string) {
+        this.cellNumber=cellNumber
+    }
+    public setMonthIndex(monthIndex: number) {
+        this.monthIndex=monthIndex
+    }
+    public getMonthIndex=()=>{
+        return  this.month
+    }
+
+
+   public setDateIndex(dateIndex: number) {
+        this.dateIndex=dateIndex
+    }
+    setLocation(location:string){
+      this.location=location
+    }
+    getLocation(){
+       return  this.location;
+    }
+    setLongitude(longitude:string){
+      return longitude
+    }
+    getLongitude(){
+        return  this.longitude;
+    }
+    setLatitude(latitude:string){
+        this.latitude=latitude
+    }
+    getLatitude(){
+        return this.latitude
+    }
+    setLongitudeDelta(longitudeDelta:string){
+        this.longitudeDelta=longitudeDelta
+    }
+    setLatitudeDelta(latitudeDelta:string){
+        this.latitudeDelta=latitudeDelta
+    }
+
+    getLatitudeDelta(){
+        return this.latitudeDelta
+    }
+    getLongitudeDelta(){
+        return this.longitudeDelta
+    }
+
+
+    public getDateIndex=()=>{
+        return  this.dateIndex
+    }
+    private address ={};
+    private isActive=false;
+    setAddress(address:{}){
+        this.address=address
+    }
+    setIsActive(isActive:boolean){
+         this.isActive=isActive
+    }
+    getTag() {
+        return this.tag;
+    }
+
+    getCellNumber() {
+        return this.cellNumber;
+    }
+
+    getContact() {
+        return this.contact;
+    }
+
+    getAddress() {
+        return this.address;
+    }
+
+    getIsActive() {
+        return this.isActive;
+    }
+
+    getIsNotify() {
+        return this.isNotify;
+    }
 }

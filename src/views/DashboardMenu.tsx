@@ -5,9 +5,11 @@ import { Picker } from "@react-native-community/picker";
 import React, { useState } from "react";
 import { CalenderItems} from "./Content";
 import {  ActivitiesLog } from "./Activities";
+import { FooterBar } from "./Footer";
 
 
-export const DashboardMenuItems=function () {
+
+export const DashboardMenuItems=function (props:any) {
     {/*Mean menu item*/}
 
     const [isCalendar,setIsCalendar]=useState(true);
@@ -17,9 +19,10 @@ export const DashboardMenuItems=function () {
     const [visible,setVisible]=useState(true) ;
     const [selectedValue,setSelectedValue]=useState('Task send to') ;
     const [isEditable,setIsEditable]=useState(true)
+
     return (
 
-    <SafeAreaView >
+    <View >
          <View style={styles.dashboardMenuItemsContainer}>
 
             <TouchableOpacity onPress={()=>{
@@ -42,12 +45,14 @@ export const DashboardMenuItems=function () {
                         <Text>{'Task name                                                                  '}</Text>
                         <TextInput placeholder={'Task name'}  style={[styles.modalText]} onChangeText={(value)=>{
                             setIModalTask(value)
+                            props.userController.setTask([{taskName:value}])
                         }} value={modalTask}/>
 
                         <Text>{'Task to                                                                '}</Text>
                         <View style={styles.taskTo}>
                             <Picker  style={[styles.modalText]} onValueChange={(value)=>{
                                 setSelectedValue(''+value)
+                                props.userController.setTask([{taskName:value}])
                             }} selectedValue={selectedValue}>
                                 {['Dan','Daneil','Dan','Daneil'].
                                 map((value, index) =>  (<Picker.Item label={value}  key={index} value={value}/>))}
@@ -123,10 +128,10 @@ export const DashboardMenuItems=function () {
             }
 
             {
-                isLog  && !isCalendar? <ActivitiesLog/> : isCalendar ? null:<ActivitiesLog/>
+                isLog  && !isCalendar? <ActivitiesLog/> : isCalendar ? null:<ActivitiesLog/> || <FooterBar/>
             }
 
 
-    </SafeAreaView>
+    </View>
     )
 }

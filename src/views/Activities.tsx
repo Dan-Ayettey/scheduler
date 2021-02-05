@@ -1,8 +1,8 @@
 import { FlatList, SafeAreaView, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
 import { TableHeader, TableRow } from "./Table";
-import { styles } from "../styles/style";
 import { calendar } from "./Calender";
+import { styles } from "../styles/style";
 
 
 export const ActivitiesLog=function () {
@@ -19,43 +19,21 @@ export const ActivitiesLog=function () {
         month:calendar.month[calendar.monthIndex].month,
         date: calendar.monthIndex +''+calendar.dayIndex+' '+calendar.year
     }];
-    let elements: any[]=[];
+
 return (
 
-          <SafeAreaView>
+          <View style={styles.activitiesContainer}>
                 <FlatList scrollEnabled={true}
                           ListHeaderComponent={<TableHeader date={'Date'} end={'End'} location={'Location'} start={'Start'} task={'Task'}/>}
                           stickyHeaderIndices={[0]}
-
                           numColumns={5}
                           data={data}
-
-
-                          renderItem={({item,index})=><TableRow task={item.task} key={index} location={item.location} end={item.end} start={item.start} date={item.date}/>
-
+                          renderItem={({item,index})=><TableRow task={item.task} key={index} location={item.location.toString()} end={item.end.toString()} start={item.start.toString()} date={item.date.toString()}/>
                           }
                           keyExtractor={(item, index) => index.toString()}
 
                 />
-              <View style={[styles.logCrudContainer]}>
-                  <TouchableOpacity>
-                      <Text style={styles.logCrudTool}>
-                          Edit
-                      </Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity>
-                      <Text style={styles.logCrudTool}>
-                          update
-                      </Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity>
-                      <Text style={styles.logCrudTool}>
-                          remove
-                      </Text>
-                  </TouchableOpacity>
-                  <Text  style={styles.logCrudTotalHours}><Text>Total hours: </Text>{6}{'hrs'}</Text>
-              </View>
-        </SafeAreaView>
+        </View>
 
 )
 }

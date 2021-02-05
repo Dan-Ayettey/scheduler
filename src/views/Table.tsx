@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Alert, Modal, SafeAreaView, Text, TextInput, TouchableHighlight, TouchableOpacity, View } from "react-native";
 import { styles, systemColor } from "../styles/style";
 import { FontAwesome } from "@expo/vector-icons";
@@ -17,24 +17,17 @@ export const TableRow = (props:{
     const [selectedValue,setSelectedValue]=useState('Task send to') ;
     const [visible,setVisible]=useState(false) ;
     const [isEditable,setIsEditable]=useState(false)
-
+    const [isEditableModal,setIsEditableModal]=useState(false)
 
     return (
-        <SafeAreaView style={styles.logHeader}>
+        <View >
 
+        <View style={styles.logHeader}>
+            <TextInput editable={isEditable} placeholderTextColor={systemColor.colors.borderInherit} placeholder={props.date} style={styles.logTableData}/>
+            <TextInput editable={isEditable} value={ props.start} style={styles.logTableData}/>
+            <TextInput editable={isEditable} value={ props.end} style={styles.logTableData}/>
+            <TextInput editable={isEditable} value= {props.location} style={styles.logTableData}/>
 
-            <Text style={styles.logTableData}>
-                {props.date}
-            </Text>
-            <Text style={styles.logTableData}>
-                {props.start}
-            </Text>
-            <Text style={styles.logTableData}>
-                {props.end}
-            </Text>
-            <Text style={styles.logTableData}>
-                {props.location}
-            </Text>
             <TouchableOpacity style={styles.logTableData} onPress={(event => {
                 setVisible(true);
 
@@ -52,7 +45,7 @@ export const TableRow = (props:{
             >
                 <View style={styles.centeredView}>
                     <View style={styles.modalView}>
-                        <Text>{'Task name                                                                  '}</Text>
+                        <Text>{'Task Type                                                                  '}</Text>
                         <TextInput placeholder={'Task name'}  style={[styles.modalText]} onChangeText={(value)=>{
                             setIModalTask(value)
                         }} value={modalTask}/>
@@ -79,7 +72,7 @@ export const TableRow = (props:{
                                 style={{ ...styles.openButton, backgroundColor: systemColor.backgroundColor }}
                                 onPress={() => {
 
-                                    setIsEditable(true)
+                                    setIsEditableModal(true)
                                 }}
                             >
                                 <Text style={styles.textStyle}>Edit</Text>
@@ -88,7 +81,7 @@ export const TableRow = (props:{
                             <TouchableHighlight
                                 style={{ ...styles.openButton, backgroundColor:  systemColor.backgroundColor  }}
                                 onPress={() => {
-                                    setIsEditable(false)
+                                    setIsEditableModal(false)
                                     setVisible(!visible);
                                 }}
                             >
@@ -97,7 +90,7 @@ export const TableRow = (props:{
                             <TouchableHighlight
                                 style={{ ...styles.openButton, backgroundColor:  systemColor.backgroundColor  }}
                                 onPress={() => {
-                                    setIsEditable(false)
+                                    setIsEditableModal(false)
                                     setVisible(!visible);
                                 }}
                             >
@@ -106,10 +99,27 @@ export const TableRow = (props:{
                     </View>
                 </View>
             </Modal>
+            </View>
+            <View style={[styles.logCrudContainer]}>
+                <TouchableOpacity>
+                    <Text style={styles.logCrudTool}>
+                        Edit
+                    </Text>
+                </TouchableOpacity>
+                <TouchableOpacity>
+                    <Text style={styles.logCrudTool}>
+                        update
+                    </Text>
+                </TouchableOpacity>
+                <TouchableOpacity>
+                    <Text style={styles.logCrudTool}>
+                        remove
+                    </Text>
+                </TouchableOpacity>
+                <Text  style={styles.logCrudTotalHours}><Text>Total hours: </Text>{6}{'hrs'}</Text>
+            </View>
 
-
-
-        </SafeAreaView>
+        </View>
     )
 
 }

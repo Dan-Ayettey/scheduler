@@ -1,69 +1,113 @@
 // Time inputs
-import { UserModel } from "../models/UserModel";
-import { UserController } from "../controllers/userController";
-import React, { useState } from "react";
-import { Alert, SafeAreaView, Text, TextInput, View } from "react-native";
-import { styles } from "../styles/style";
+import React, { useEffect, useState } from "react";
+import {
+    SafeAreaView,
+    Text,
+    TextInput,
+    ToastAndroid,
+    View
+} from "react-native";
+import { styles} from "../styles/style";
+export const showToastWithGravity = (message:string) => {
+    ToastAndroid.showWithGravity(
+        message,
+        ToastAndroid.LONG,
+        ToastAndroid.CENTER
+    );
+};
 export const checkTime=(text:string,timeType:string)=>{
-     if(timeType==='hour'){
-         return  parseInt(text)>24? Alert.alert('Input must not be greater than 24'):1
-     }else if (timeType==='minute'){
-         return  parseInt(text)>60? Alert.alert('Input must not be greater than 60'):1
-     }else {
-         Alert.alert('Check your time type must be hour or minutes')
+    if(parseInt(text)>24 && timeType==='hour'){
+             showToastWithGravity('Input must not be greater than 24')
+             return  false
+         }
+    if (parseInt(text)>60 && timeType==='minute'){
+          showToastWithGravity('Input must not be greater than 60')
+             return false
      }
-
-
+    return true
 }
-export const PickTime= ()=>
+export const PickTime= (props:any)=>
 {
-    const model=new UserModel()
-    const userController=new UserController(model)
-    const [end,setEnd]=useState({minutes:'',hour:''})
-    const [start,setStart]=useState({minutes:'',hour:''})
 
+    const [end,setEnd]=useState({hour:props.model.getEnd().hour,minutes:props.model.getEnd().minutes})
+    const [start,setStart]=useState({hour:props.model.getStart().hour,minutes:props.model.getStart().minutes})
+    const [visible,setVisibility]=useState(false)
+    useEffect(()=>{
+        props.userController.setStart(start)
+        props.userController.setEnd(end)
+
+        console.log( start,end)
+    })
     return (
         <SafeAreaView>
 
             <View style={[styles.PickTimeContainer]}>
 
                 <Text style={styles.end}>{'Start'}</Text>
-                <TextInput keyboardType={'phone-pad' ||'number-pad'} onChangeText={(text => {
+                <TextInput keyboardType={'phone-pad' ||'number-pad'} onChangeText={((text)=>{
+
                     const isValid=checkTime(text,'hour')
                     if(isValid){
-                        setStart({minutes: start.minutes, hour: text})
-                        userController.setStart(start)
 
+                            setStart({hour: text.replace(/[^0-9]/g, ''),minutes: start.minutes
+                            })
+
+                        setVisibility(false)
+                    }else {
+                        setStart({ hour: start.hour,minutes: start.minutes
+                        })
+                        setVisibility(true)
                     }
 
 
-                })} value={start.hour} autoCorrect={false} maxLength={2} style={styles.textInTime} placeholder="hour"/>
+                })
+                } value={start.hour} autoCorrect={false} maxLength={2} style={styles.textInTime} placeholder="hour"/>
 
                 <TextInput keyboardType={'phone-pad' ||'number-pad'} onChangeText={(text => {
                     const isValid=checkTime(text,'minute')
                     if(isValid){
-                        setStart({minutes: text, hour: start.hour})
-                        userController.setStart(start)
+                        setStart({hour: start.hour,minutes: text.toString().replace(/[^0-9]/g, '')})
+                        setVisibility(false)
+                        console.log(start)
+
+                    }else {
+                        setVisibility(true)
+                        setStart({ hour: start.hour,minutes: start.minutes,})
                     }
                 })} value={start.minutes} autoCorrect={false} style={styles.textInTime}  placeholder={'minute'}  maxLength={2}/>
                 <Text style={styles.end}>{'End'}</Text>
                 <TextInput keyboardType={'phone-pad' ||'number-pad'} onChangeText={(text => {
                     const isValid=checkTime(text,'hour')
                     if(isValid){
-                        setEnd({minutes: end.minutes, hour: text})
-                        userController.setEnd(end)
+                        setEnd({hour:
+                                text.toString().replace(/[^0-9]/g, ''),minutes: end.minutes})
+                        setVisibility(false)
+                        console.log(end)
+
+                    }else {
+                        setEnd({minutes: end.minutes, hour:end.hour})
+                        setVisibility(true)
                     }
                 })} value={end.hour} autoCorrect={false} style={styles.textInTime} placeholder="hour" maxLength={2}/>
                 <TextInput keyboardType={'phone-pad' ||'number-pad' } onChangeText={(text => {
                     const isValid=checkTime(text,'minute')
                     if(isValid){
-                        setEnd({minutes: text, hour: end.hour})
-                        userController.setEnd(end)
+                        setEnd({hour: end.hour,minutes: text.toString().replace(/[^0-9]/g, '') })
+                        props.userController.setEnd(end)
+                        setVisibility(false)
+
+                    }else {
+                        setEnd({hour: end.hour,minutes: end.minutes })
+                        props.userController.setEnd(end)
+                        setVisibility(true)
                     }
                 })} value={end.minutes} autoCorrect={false} style={styles.textInTime}  placeholder={'minute'}  maxLength={2}/>
+
 
             </View>
 
         </SafeAreaView>
     )
+
 }
+

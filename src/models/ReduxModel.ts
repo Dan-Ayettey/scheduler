@@ -5,16 +5,16 @@ export const reduxReduce=(state:any,action:any)=>{
     switch (action.type) {
         case 'STATUS':return Object.assign({},state,{
             loading:action.loading,
-            statusCode:400,
+            statusCode:action.statusCode,
 
         })
-        case 'PULL': return Object.assign({},state,{
+        case 'user': return Object.assign({},state,{
             pulledData:action.data,
             isDone:action.isDone,
             state:state
 
         })
-        case 'PUSH': return Object.assign({},state,{
+        case 'contact': return Object.assign({},state,{
             pushedData:action.data,
             isDone:action.isDone,
             state:state

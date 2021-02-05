@@ -1,20 +1,27 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { SafeAreaView} from 'react-native';
-import { styles, systemBar} from "./src/styles/style";
-import {Dashboard} from "./src/views/Dashboard";
-import { FooterBar } from "./src/views/Footer";
-import { AppBar } from "./src/views/Header";
+import { ScrollView, View } from 'react-native';
+import { Auth } from "./src/views/Auth";
+import { systemBar } from "./src/styles/style";
 
 
 export default function App() {
   return (
-    <SafeAreaView style={styles.container}>
-        <StatusBar style="light" animated={true} backgroundColor={systemBar.backgroundColor}/>
-        <AppBar/>
-      <Dashboard/>
-      <FooterBar/>
-    </SafeAreaView>
+
+
+
+
+              <View style={{flex: 1}}>
+                  <StatusBar style={"light"} backgroundColor={systemBar.backgroundColor}/>
+                 <Auth/>
+              </View>
+
+
+
+
+
+
+
   );
 }
 
