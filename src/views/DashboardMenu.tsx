@@ -39,7 +39,7 @@ export const DashboardMenuItems=function (props:any) {
                 onRequestClose={() => {
                     Alert.alert("Close The task editor.");
                 }}
-            >
+              >
                 <View style={styles.centeredView}>
                     <View style={styles.modalView}>
                         <Text>{'Task name                                                                  '}</Text>
@@ -106,7 +106,7 @@ export const DashboardMenuItems=function (props:any) {
 
 
         }}>
-            <FontAwesome color={systemColor.backgroundColor} style={styles.mainItem}  size={43} name={'calendar'}/>
+            <FontAwesome color={isCalendar ? 'crimson':systemColor.backgroundColor} style={styles.mainItem}  size={43} name={'calendar'}/>
         </TouchableOpacity>
 
         <TouchableOpacity  onPress={()=>{
@@ -128,7 +128,7 @@ export const DashboardMenuItems=function (props:any) {
             }
 
             {
-                isLog  && !isCalendar? <ActivitiesLog/> : isCalendar ? null:<ActivitiesLog/> || <FooterBar/>
+                isLog  && !isCalendar? <ActivitiesLog/> : isCalendar ? null:<ActivitiesLog/>
             }
 
 

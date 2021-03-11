@@ -49,33 +49,6 @@ export class PersistenceController {
     }
 
 
-/*
-[dbIndex,
-               request.firstName,
-               request.lastName,
-              request.email,
-              request.password    ,
-              request.tag         ,
-              request.cellNumber  ,
-              request.contact     ,
-              request.startTime   ,
-              request.endTime     ,
-              request.month       ,
-              request.day         ,
-              request.task        ,
-              request.dayName     ,
-              request.address     ,
-              request.telephone   ,
-              request.date        ,
-              request.location    ,
-              request.longitude   ,
-              request.latitude    ,
-              request.latitudeDelta,
-              request.longitudeDelta
- */
-
-
-
     isOk=false
    public createUser=(request:any)=> {
        this.persistenceModel.db("scheduler").readTransaction(transaction => {

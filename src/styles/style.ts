@@ -142,19 +142,13 @@ export const systemBar={
          width:'100%',
          paddingTop:40,
          paddingBottom:10,
-         zIndex:100,
-         top:0,
-         position:"absolute"
-
      },
      appBarContainerItems: {
          flexDirection:'row',
          justifyContent:'flex-end',
          alignItems:'center',
          margin:0,
-         padding:0
-
-
+         padding:0,
      },
      appBarIcon: {
          marginLeft:40,
@@ -254,14 +248,13 @@ export const systemBar={
      monthNumber:{
          borderRadius:3,
          backgroundColor:systemColor.backgroundColor,
+         padding:'7.4%',
+
          margin:0.40
 
      },
      monthText: {
-         paddingLeft:22,
-         paddingRight:20,
-         paddingBottom:7.2,
-         paddingTop:7,
+         padding:'7.4%',
          margin:1,
          borderRadius:20,
 
@@ -476,7 +469,48 @@ export const systemBar={
          borderRadius:4,
          justifyContent:'space-evenly',
          alignItems:'center',
+     },
+     appBarContainerMenuItems: {
+
+
+         backgroundColor:'white',
+         shadowColor: "#ffffff",
+         shadowOffset: {
+             width: 0,
+             height: 1
+
+         },
+         shadowOpacity: 0.1,
+         shadowRadius: 1,
+         elevation: 4,
+      position:'absolute',
+    padding:10,
+         width:200,
+         height:300,
+         top:98,
+         zIndex:-50,
+         flexDirection:'row',
+         alignSelf:'flex-end'
+     },
+     appBarContainerMenuItemsIcon: {
+         textAlign:'left',
+        color:systemBar.backgroundColor,
+
+     },
+     appBarContainerMenuItemsIconTitle:{
+         padding:10,
+         margin:10,
+         fontSize:13,
+         fontWeight:'bold'
+     },
+     dateLite: {
+     borderRadius:20,
+         fontSize:16,
+         fontWeight:'800',
+         backgroundColor:systemColor.backgroundColor,
+         textAlign:'center',width:30,height:30,padding:6
      }
+
 
  });
 

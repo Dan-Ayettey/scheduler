@@ -1,4 +1,4 @@
-import {ScrollView, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { Image, ScrollView, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import React, { useState } from "react";
 import { styles, systemColor } from "../styles/style";
@@ -8,6 +8,7 @@ import { PersistenceModel } from "../models/PersistenceModel";
 import { PersistenceController } from "../controllers/PersistenceController";
 import { UserModel } from "../models/UserModel";
 import { UserController } from "../controllers/userController";
+import { AppBar } from "./Header";
 export const checkNumber=(text:string)=>{
 
     if(text.match('\^[0-9]+$')){
@@ -117,7 +118,7 @@ export const Auth=()=>{
     }else {
    return(
        <View style={[styles.loginDashBoardContainer]}>
-        <Dashboard/>
+        <AppBar/>
        </View>
      )
     }
@@ -237,15 +238,18 @@ export const Auth=()=>{
                                         ]
 
                                          const isOk=   props.persistenceController.createUser(user);
-                                        console.log(isOk)
-                                        setIsLoginVisible(!isOk)
-                                        if(isOk){
 
+                                      setTimeout(()=>{
+                                          if(isOk){
+                                              console.log(isOk)
+                                              setIsLoginVisible(!isOk)
+                                              clearInterval(this)
 
+                                          }else {
+                                              showToastWithGravity('The email already exist, please try to login instead')
+                                          }
+                                      },500)
 
-                                        }else {
-                                            showToastWithGravity('The email already exist, please try to login instead')
-                                        }
 
 
                                     }}>
@@ -255,6 +259,9 @@ export const Auth=()=>{
                                         setIsLoginVisible(false)
                                     }}>
                                         <Text style={styles.loginButtonSignUp} >Login</Text>
+                                    </TouchableOpacity>
+                                    <TouchableOpacity>
+                                        { isCreated?  <Image source={require('../assets/loading_24.gif')}/> : null}
                                     </TouchableOpacity>
                                 </View>
 
