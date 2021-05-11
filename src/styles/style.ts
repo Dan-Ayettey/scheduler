@@ -13,6 +13,7 @@ export const systemColor={
 
 
 };
+
 export const shadow={
     shadowColor: "#000",
     shadowOffset: {
@@ -170,7 +171,8 @@ export const systemBar={
 
      dashboardMenuItemsContainer: {
          flexDirection:'row',
-         justifyContent:'space-evenly'
+         justifyContent:'space-evenly',
+         marginTop:20
      },
      mainItem: {
          margin:10,
@@ -178,13 +180,12 @@ export const systemBar={
          marginRight:30,
 
      },
-     PickTimeContainer: {
+     pickTimeContainer: {
          flexDirection:'row',
-         justifyContent:'space-evenly',
+         justifyContent:'space-around',
+         marginTop:100,
 
      },
-
-
 
      textInTime: {
          borderWidth:1,
@@ -201,38 +202,63 @@ export const systemBar={
      end: {
          marginTop:16
      },
-     monthContainer: {
-         flexDirection:'row',
-         backgroundColor:systemColor.backgroundColor,
-         padding:10,
-         borderRadius:30,
-         margin:4,
-         justifyContent:'space-evenly',
-         alignItems:'center',
 
+
+     dayNameItem:{
+         padding:4,
+         borderRadius: 20,
+         alignSelf:'center',
+         backgroundColor:systemColor.backgroundColor,
+         textAlign:'center',
+         marginLeft:48
      },
-     dayName:{
+     month:{
+         padding:10,
+         borderRadius: 40,
+         alignSelf:'center',
+         textAlign:'center',
+         marginLeft:48,
+         backgroundColor:systemColor.backgroundColor,
+         fontSize:13,...shadow
+     },
+     monthContainer:{
+         width:'100%',
          borderRadius: 20,
          flexDirection: "column",
-         marginBottom:2,
-         padding:6,
+         textAlign:'center',
+         padding:16,
+         margin:6,
+         height:74,
+         alignSelf:'center',
+         backgroundColor:systemColor.backgroundColor,
+         fontSize:13,
+         fontWeight:'normal'
+     },
+     dayName:{
+        width:'90%',
+         borderRadius: 20,
+         flexDirection: "column",
+         textAlign:'center',
+         padding:4,
+         margin:6,
+
+         alignSelf:'center',
          backgroundColor:systemColor.backgroundColor,
          fontSize:13,
          fontWeight:'normal',
 
      },
-     month: {
-
-         borderRadius: 40,
+     /*
+          borderRadius: 40,
          flexDirection: "column",
          marginLeft:5,
          marginRight:5,
          marginBottom:2,
          padding:6,
          backgroundColor:systemColor.backgroundColor,
-         fontSize:13,
-         ...shadow
-     },
+         fontSize:13,...shadow
+      */
+
      dateNumbersContainer: {
         marginLeft:3,
          marginRight:4,
@@ -472,23 +498,23 @@ export const systemBar={
      },
      appBarContainerMenuItems: {
 
-
          backgroundColor:'white',
          shadowColor: "#ffffff",
          shadowOffset: {
-             width: 0,
+             width: 10,
              height: 1
 
          },
+
          shadowOpacity: 0.1,
          shadowRadius: 1,
-         elevation: 4,
+         elevation: 40,
       position:'absolute',
     padding:10,
          width:200,
          height:300,
          top:98,
-         zIndex:-50,
+         zIndex:5,
          flexDirection:'row',
          alignSelf:'flex-end'
      },

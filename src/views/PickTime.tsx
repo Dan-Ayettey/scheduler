@@ -1,6 +1,7 @@
 // Time inputs
 import React, { useEffect, useState } from "react";
 import {
+    Dimensions,
     SafeAreaView,
     Text,
     TextInput,
@@ -26,9 +27,9 @@ export const checkTime=(text:string,timeType:string)=>{
      }
     return true
 }
-export const PickTime= (props:any)=>
-{
-
+export const PickTime= (props:any)=> {
+    const {width, height}=Dimensions.get('window')
+    const isWidth=width<=488 && width!=280?{width:60}:{width:270}
     const [end,setEnd]=useState({hour:props.model.getEnd().hour,minutes:props.model.getEnd().minutes})
     const [start,setStart]=useState({hour:props.model.getStart().hour,minutes:props.model.getStart().minutes})
     const [visible,setVisibility]=useState(false)
@@ -41,7 +42,7 @@ export const PickTime= (props:any)=>
     return (
         <SafeAreaView>
 
-            <View style={[styles.PickTimeContainer]}>
+            <View style={[styles.pickTimeContainer,width===280?{flexDirection:'column'}:{flexDirection:"row"}]}>
 
                 <Text style={styles.end}>{'Start'}</Text>
                 <TextInput keyboardType={'phone-pad' ||'number-pad'} onChangeText={((text)=>{
@@ -61,7 +62,7 @@ export const PickTime= (props:any)=>
 
 
                 })
-                } value={start.hour} autoCorrect={false} maxLength={2} style={styles.textInTime} placeholder="hour"/>
+                } value={start.hour} autoCorrect={false} maxLength={2} style={[styles.textInTime,isWidth]} placeholder="hour"/>
 
                 <TextInput keyboardType={'phone-pad' ||'number-pad'} onChangeText={(text => {
                     const isValid=checkTime(text,'minute')
@@ -74,7 +75,7 @@ export const PickTime= (props:any)=>
                         setVisibility(true)
                         setStart({ hour: start.hour,minutes: start.minutes,})
                     }
-                })} value={start.minutes} autoCorrect={false} style={styles.textInTime}  placeholder={'minute'}  maxLength={2}/>
+                })} value={start.minutes} autoCorrect={false} style={[styles.textInTime,isWidth]}  placeholder={'minute'}  maxLength={2}/>
                 <Text style={styles.end}>{'End'}</Text>
                 <TextInput keyboardType={'phone-pad' ||'number-pad'} onChangeText={(text => {
                     const isValid=checkTime(text,'hour')
@@ -88,7 +89,8 @@ export const PickTime= (props:any)=>
                         setEnd({minutes: end.minutes, hour:end.hour})
                         setVisibility(true)
                     }
-                })} value={end.hour} autoCorrect={false} style={styles.textInTime} placeholder="hour" maxLength={2}/>
+                })} value={end.hour} autoCorrect={false} style={[styles.textInTime,isWidth]} placeholder="hour" maxLength={2}/>
+
                 <TextInput keyboardType={'phone-pad' ||'number-pad' } onChangeText={(text => {
                     const isValid=checkTime(text,'minute')
                     if(isValid){
@@ -101,7 +103,7 @@ export const PickTime= (props:any)=>
                         props.userController.setEnd(end)
                         setVisibility(true)
                     }
-                })} value={end.minutes} autoCorrect={false} style={styles.textInTime}  placeholder={'minute'}  maxLength={2}/>
+                })} value={end.minutes} autoCorrect={false} style={[styles.textInTime,isWidth]}  placeholder={'minute'}  maxLength={2}/>
 
 
             </View>

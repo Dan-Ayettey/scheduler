@@ -14,7 +14,7 @@ export class PersistenceController {
 
         this.persistenceModel.db('scheduler').transaction((transaction) => {
             transaction.executeSql(`CREATE TABLE IF NOT EXISTS
-                                        contact
+                                        users
                                     (
                                         user_id        INT         NOT NULL PRIMARY KEY,
                                         firstName      TEXT        NOT NULL,

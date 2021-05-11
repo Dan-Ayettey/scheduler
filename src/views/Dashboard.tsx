@@ -1,4 +1,4 @@
-import { View} from "react-native";
+import { View,Dimensions} from "react-native";
 import { DashboardMenuItems } from "./DashboardMenu";
 import React from "react";
 import { AppBar } from "./Header";

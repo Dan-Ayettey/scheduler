@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="scheduler" uuid="aa99a9d4-9181-4313-a734-5bc4ef5c05ed">
+    <data-source source="LOCAL" name="identifier.sqlite" uuid="e160405d-50cf-4b4e-9571-e46ca27b1e6e">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:C:\Users\ictte\Desktop\catalog-app\scheduler\src\assets\scheduler.db</jdbc-url>
+      <jdbc-url>jdbc:sqlite:identifier.sqlite</jdbc-url>
     </data-source>
   </component>
 </project>

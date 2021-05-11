@@ -12,7 +12,7 @@ export const calendar={
         ,{month:'August'},{month:'September'},{month:'October'}
         ,{month:'November'},{month:'December'}],
     patchDay: [1,2,3,4,5,6,7],
-    day:Array.from(Array(new Date(new Date().getFullYear(), new Date().getMonth()+1, 0).getDate(),).keys()),
+    day:Array.from(Array(new Date(new Date().getFullYear(), new Date().getMonth(), 0).getDate(),).keys()),
     dayName: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'],
     dayIndex:date.getDay(),
     dateIndex:date.getDate(),
@@ -113,9 +113,9 @@ export  const DayName=function (props:any){
     })
 
     return (
-        <View style={{flexDirection:'row',justifyContent:'space-evenly'}}>
+        <View style={[styles.dayName]}>
             {/*Days name*/}
-            <FlatList horizontal={true} showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false}
+            <FlatList style={styles.dayName} horizontal={true} showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false}
                       data={calendar.dayName} initialScrollIndex={daySignal}
                       renderItem={({item,index})=>
                           <View>
@@ -126,7 +126,7 @@ export  const DayName=function (props:any){
                           }}>
 
                               <Text style={[{color:index===daySignal ?
-                                      'yellow':systemColor.color},styles.dayName]} onPress={(event) => {
+                                      'yellow':systemColor.color},styles.dayNameItem]} onPress={(event) => {
                                   setDaySignal(index);
                                   setDayName(item)
                               }}>{item}</Text>
@@ -149,7 +149,7 @@ export const Dates=function (props:any) {
     return(
         <View>
      <View style={{flexDirection: 'row',
-         flexWrap: 'wrap',alignContent:'stretch',justifyContent:'flex-start'}}>
+         flexWrap: 'wrap',alignContent:'stretch',justifyContent:'center',width:'100%'}}>
          {/*dates bar*/}
 
          {day.concat([],Array.from(Array(21).keys())).map((items:any,index:number)=>(

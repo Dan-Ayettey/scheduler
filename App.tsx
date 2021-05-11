@@ -10,14 +10,6 @@ import { PersistenceModel } from "./src/models/PersistenceModel";
 import { PersistenceController } from "./src/controllers/PersistenceController";
 import { DashboardMenuItems } from "./src/views/DashboardMenu";
 import { FooterBar } from "./src/views/Footer";
-import { NavigationContainer } from "@react-navigation/native";
-import {createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import Icons from 'react-native-vector-icons/MaterialCommunityIcons'
-import { Icon } from "expo/build/removed.web";
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-
-
-const Tab=createBottomTabNavigator();
 
 function Home() {
     return (
@@ -40,7 +32,7 @@ export default function App() {
     const persistenceModel=new  PersistenceModel();
     const persistenceController=new PersistenceController(persistenceModel);
     persistenceController.createTable();
-    const [isMenu,setIsMenu]=useState(true);
+    const [isMenu,setIsMenu]=useState(false);
     const  [isLogout,setIsLogout]=useState(true)
     const  [isItems,setIsItem]=useState(true)
 
@@ -48,11 +40,11 @@ export default function App() {
 
 
 
-      <View style={{flex: 1}}>
+      <View>
 
-          <StatusBar  style={"light"} backgroundColor={systemBar.backgroundColor}/>
+          <StatusBar  style={"dark"} backgroundColor={systemBar.backgroundColor}/>
 
-          <View style={{flex: 2}}>
+          <View>
               <View style={[styles.appBarContainerItems,styles.appBarContainer]}>
 
                   <View style={styles.userActivities}>
@@ -117,61 +109,16 @@ export default function App() {
 
               </View>
 
-              <ScrollView style={{flex: 7}}>
-                  {isLogout?
-                      <DashboardMenuItems/>
-                      :null}
-              </ScrollView>
-              {isMenu? <View style={[styles.appBarContainerMenuItems]}>
 
-                  <ScrollView showsHorizontalScrollIndicator={false}
-                              scrollEnabled={true} showsVerticalScrollIndicator={false}>
-
-                      <TouchableOpacity onPress={() => {
-                          setIsLogout(false);
-                          setIsItem(false);
-                          setIsMenu(false);
-                      }}>
-                          <Text style={styles.appBarContainerMenuItemsIconTitle}>
-                              <FontAwesome size={16} name={'sign-out'} style={styles.appBarContainerMenuItemsIcon}/> <Text
-                              style={styles.appBarContainerMenuItemsIconTitle}>Log out</Text>
-                          </Text>
-                          <TouchableOpacity>
-                              <Text style={styles.appBarContainerMenuItemsIconTitle}>
-                                  <FontAwesome size={16} name={'user'} style={styles.appBarContainerMenuItemsIcon}/> <Text
-                                  style={styles.appBarContainerMenuItemsIconTitle}>profile</Text>
-                              </Text>
-                          </TouchableOpacity>
-                      </TouchableOpacity>
-                      <TouchableOpacity>
-                          <Text style={styles.appBarContainerMenuItemsIconTitle}>
-                              <FontAwesome size={16} name={'cog'} style={styles.appBarContainerMenuItemsIcon}/> <Text
-                              style={styles.appBarContainerMenuItemsIconTitle}>Settings</Text>
-                          </Text>
-                      </TouchableOpacity>
-                      <TouchableOpacity>
-                          <Text style={styles.appBarContainerMenuItemsIconTitle}>
-                              <FontAwesome size={16} name={'info'} style={styles.appBarContainerMenuItemsIcon}/> <Text
-                              style={styles.appBarContainerMenuItemsIconTitle}>Help</Text>
-                          </Text>
-                      </TouchableOpacity>
-                      <TouchableOpacity>
-                          <Text style={styles.appBarContainerMenuItemsIconTitle}>
-                              <FontAwesome size={16} name={'info-circle'} style={styles.appBarContainerMenuItemsIcon}/> <Text
-                              style={styles.appBarContainerMenuItemsIconTitle}>about</Text>
-                          </Text>
-                      </TouchableOpacity>
-                      <TouchableOpacity>
-                          <Text style={styles.appBarContainerMenuItemsIconTitle}>
-                              <Text style={styles.appBarContainerMenuItemsIcon}/> <Text
-                              style={styles.appBarContainerMenuItemsIconTitle}> </Text>
-                          </Text>
-                      </TouchableOpacity>
-                  </ScrollView>
-              </View>:null}
           </View>
 
-          <View style={{flex: 0}}>
+          <Text>
+             
+              <View>
+
+              </View>
+          </Text>
+          <View>
               <FooterBar/>
           </View>
       </View>

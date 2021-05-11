@@ -1,4 +1,14 @@
-import { Alert, Modal, SafeAreaView, Text, TextInput, TouchableHighlight, TouchableOpacity, View } from "react-native";
+import {
+    Alert,
+    Dimensions,
+    Modal,
+    SafeAreaView,
+    Text,
+    TextInput,
+    TouchableHighlight,
+    TouchableOpacity,
+    View
+} from "react-native";
 import { styles, systemColor } from "../styles/style";
 import { FontAwesome } from "@expo/vector-icons";
 import { Picker } from "@react-native-community/picker";
@@ -31,7 +41,7 @@ export const DashboardMenuItems=function (props:any) {
             }} style={styles.mainItem}>
                 <FontAwesome  color={systemColor.backgroundColor} size={55} name={'plus-square-o'}/>
             </TouchableOpacity>
-            <Modal
+            <Modal style={{display:"none"}}
                 animationType="slide"
                 transparent={true}
                 visible={visible}

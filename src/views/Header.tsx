@@ -131,7 +131,7 @@ export const Bar=()=>{
                     </View>
 
                     <TouchableOpacity onPress={()=>{
-                        console.log(modelFromCalenderItems.getTag())
+
                         persistenceController.createUser([
                             0,
                             modelFromCalenderItems.getFirstName(),
@@ -166,6 +166,7 @@ export const Bar=()=>{
                     </TouchableOpacity>
 
                     <TouchableOpacity onPress={()=>{
+                        console.log("skfjdfjd")
 
                         !isMenu ? setIsMenu(true):setIsMenu(false)
                     }}>
