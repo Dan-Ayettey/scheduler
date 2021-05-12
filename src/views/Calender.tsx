@@ -1,4 +1,4 @@
-import { FlatList,Text, TouchableOpacity, View } from "react-native";
+import { Dimensions, FlatList, Text, TouchableOpacity, View } from "react-native";
 import { styles, systemColor } from "../styles/style";
 import React, { useEffect, useState } from "react";
 export const date:Date=new Date()
@@ -138,6 +138,7 @@ export  const DayName=function (props:any){
     )
 }
 export const Dates=function (props:any) {
+    const {width, height}=Dimensions.get('window')
     const [signal,setSignal]=useState(calendar.dateIndex-1);
     const [day,setDay]=useState(props.day);
     day.length > props.day.length ? setDay(props.day):null
@@ -151,9 +152,9 @@ export const Dates=function (props:any) {
      <View style={{flexDirection: 'row',
          flexWrap: 'wrap',alignContent:'stretch',justifyContent:'center',width:'100%'}}>
          {/*dates bar*/}
-
+         {console.log(height)/*style={[height<=669?{ height:height-186,alignSelf:'center',width:'8%'}:{alignSelf:'center', height:height-195,marginBottom:4}  ]}*/}
          {day.concat([],Array.from(Array(21).keys())).map((items:any,index:number)=>(
-             <View key={index} style={{margin:0.6,borderRadius:4,padding:10,paddingLeft:12,paddingRight:12,backgroundColor:systemColor.backgroundColor}}>
+             <View key={index} style={[width<=710?{padding:10,paddingLeft:10,paddingRight:10,backgroundColor:systemColor.backgroundColor,margin:0.6}:{margin:0.6,padding:40,paddingLeft:40,paddingRight:40,backgroundColor:systemColor.backgroundColor}]}>
 
              <TouchableOpacity activeOpacity={10} style={[{}]}>
 

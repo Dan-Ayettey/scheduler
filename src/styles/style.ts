@@ -49,7 +49,6 @@ export const systemBar={
          flex: 1,
          justifyContent: "center",
          alignItems: "center",
-         marginTop: 22,
          shadowColor: "#000",
          shadowOffset: {
              width: 0,
@@ -141,8 +140,8 @@ export const systemBar={
          color:systemColor.color,
          margin:0,
          width:'100%',
-         paddingTop:40,
-         paddingBottom:10,
+         paddingTop:14,
+         paddingBottom:14,
      },
      appBarContainerItems: {
          flexDirection:'row',
@@ -172,7 +171,7 @@ export const systemBar={
      dashboardMenuItemsContainer: {
          flexDirection:'row',
          justifyContent:'space-evenly',
-         marginTop:20
+         marginTop:2
      },
      mainItem: {
          margin:10,
@@ -183,7 +182,7 @@ export const systemBar={
      pickTimeContainer: {
          flexDirection:'row',
          justifyContent:'space-around',
-         marginTop:100,
+         marginTop:40,
 
      },
 
@@ -210,14 +209,14 @@ export const systemBar={
          alignSelf:'center',
          backgroundColor:systemColor.backgroundColor,
          textAlign:'center',
-         marginLeft:48
+         marginLeft:98
      },
      month:{
          padding:10,
          borderRadius: 40,
          alignSelf:'center',
          textAlign:'center',
-         marginLeft:48,
+         marginLeft:78,
          backgroundColor:systemColor.backgroundColor,
          fontSize:13,...shadow
      },
@@ -241,7 +240,6 @@ export const systemBar={
          textAlign:'center',
          padding:4,
          margin:6,
-
          alignSelf:'center',
          backgroundColor:systemColor.backgroundColor,
          fontSize:13,

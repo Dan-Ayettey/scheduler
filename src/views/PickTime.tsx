@@ -42,7 +42,7 @@ export const PickTime= (props:any)=> {
     return (
         <SafeAreaView>
 
-            <View style={[styles.pickTimeContainer,width===280?{flexDirection:'column'}:{flexDirection:"row"}]}>
+            <View style={[styles.pickTimeContainer,width===280 || width===540?{flexDirection:'column',alignSelf:'center'}:{flexDirection:"row"}]}>
 
                 <Text style={styles.end}>{'Start'}</Text>
                 <TextInput keyboardType={'phone-pad' ||'number-pad'} onChangeText={((text)=>{
