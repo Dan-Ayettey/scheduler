@@ -14,7 +14,7 @@ import React from "react";
 
  export let modelFromCalenderItems: UserModel;
 export const CalenderItems=()=>{
-    modelFromCalenderItems=new UserModel();
+      modelFromCalenderItems=new UserModel();
      const initUserController=  new UserController(modelFromCalenderItems);
 
     return (

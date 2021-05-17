@@ -34,6 +34,8 @@ export const systemBar={
 
 };
  export const styles = StyleSheet.create({
+
+
     container: {
         flex: 1,
         backgroundColor: '#fff',
@@ -136,12 +138,9 @@ export const systemBar={
      },
 
      appBarContainer: {
-         backgroundColor:systemColor.backgroundColor,
-         color:systemColor.color,
-         margin:0,
-         width:'100%',
-         paddingTop:14,
-         paddingBottom:14,
+
+         top:-20
+
      },
      appBarContainerItems: {
          flexDirection:'row',
@@ -391,15 +390,14 @@ export const systemBar={
          marginRight:4,
          padding:6
      },
-     loginContainer: {
 
-     },
      loginInputsContainer: {
-        marginTop:10,
+        marginTop:30,
          flexDirection:'column',
          justifyContent:'space-evenly',
          alignContent:'center',
-         alignSelf:'center'
+         alignSelf:'center',
+         width:'60%'
      },
      loginWithContainer:{
          flexDirection:'row',
@@ -410,7 +408,7 @@ export const systemBar={
      },
      loginHeading:{
         margin :20,
-         marginTop:40,
+         marginTop:24,
          fontSize:20,
          fontWeight:'bold'
      },
@@ -430,8 +428,8 @@ export const systemBar={
              borderWidth:1,
              margin:4,
              borderRadius: 4,
-             width:250,
-             overflow:'scroll',
+             width:'100%',
+             alignSelf:'center',
              borderColor:systemColor.backgroundColor,
              color:'black'
      },
@@ -458,6 +456,7 @@ export const systemBar={
 
      },
      loginButtonContainer: {
+
         flexDirection:'row',
          justifyContent:'space-between'
      },
@@ -468,12 +467,8 @@ export const systemBar={
              alignSelf:'center',
              alignContent:'center',
      },
-     loginItems: {
-       marginTop:130
-     },
-     register: {
-         marginTop:80
-     },
+
+
      dashboardContent:{
 
 
@@ -494,38 +489,29 @@ export const systemBar={
          justifyContent:'space-evenly',
          alignItems:'center',
      },
-     appBarContainerMenuItems: {
-
-         backgroundColor:'white',
-         shadowColor: "#ffffff",
-         shadowOffset: {
-             width: 10,
-             height: 1
-
-         },
-
-         shadowOpacity: 0.1,
-         shadowRadius: 1,
-         elevation: 40,
-      position:'absolute',
-    padding:10,
-         width:200,
-         height:300,
-         top:98,
-         zIndex:5,
-         flexDirection:'row',
-         alignSelf:'flex-end'
+     appBarContainerMenuItems:{
+      alignSelf:'flex-end',
+      alignContent:'flex-end',
+      textAlign:'left',
+         position:'absolute',
+      backgroundColor:'white',
+      zIndex:120,
+      height:300,
+      marginTop:30,
+      marginRight:-29,
+      ...shadow
      },
      appBarContainerMenuItemsIcon: {
          textAlign:'left',
+         margin:0,
         color:systemBar.backgroundColor,
 
      },
      appBarContainerMenuItemsIconTitle:{
-         padding:10,
-         margin:10,
          fontSize:13,
-         fontWeight:'bold'
+         fontWeight:'bold',
+         margin:20
+
      },
      dateLite: {
      borderRadius:20,
@@ -533,6 +519,39 @@ export const systemBar={
          fontWeight:'800',
          backgroundColor:systemColor.backgroundColor,
          textAlign:'center',width:30,height:30,padding:6
+     },
+     footer: {
+         fontSize: 20,
+         flex:1,
+         width:'100%',
+         padding:10,
+         textAlign:'center',
+         zIndex:1,
+         backgroundColor:systemColor.backgroundColor,
+
+
+     },
+     scrollViewStyle: {
+         position: 'absolute',
+         top: 0,
+         bottom: 0,
+         left: 0,
+         right: 0,
+         flex:10,
+         paddingTop: 60
+     },
+
+     header:{
+         fontSize: 20,
+         flex:0,
+         width:'100%',
+         padding:30,
+         textAlign:'center',
+         zIndex:1,
+         backgroundColor:systemColor.backgroundColor,
+     },
+     register:{
+         marginTop:-60
      }
 
 

@@ -1,7 +1,7 @@
 // Time inputs
 import React, { useEffect, useState } from "react";
 import {
-    Dimensions,
+    Dimensions, Modal,
     SafeAreaView,
     Text,
     TextInput,
@@ -9,6 +9,8 @@ import {
     View
 } from "react-native";
 import { styles} from "../styles/style";
+import { UserController } from "../controllers/userController";
+import { UserModel } from "../models/UserModel";
 export const showToastWithGravity = (message:string) => {
     ToastAndroid.showWithGravity(
         message,
@@ -33,11 +35,12 @@ export const PickTime= (props:any)=> {
     const [end,setEnd]=useState({hour:props.model.getEnd().hour,minutes:props.model.getEnd().minutes})
     const [start,setStart]=useState({hour:props.model.getStart().hour,minutes:props.model.getStart().minutes})
     const [visible,setVisibility]=useState(false)
+
     useEffect(()=>{
         props.userController.setStart(start)
         props.userController.setEnd(end)
 
-        console.log( start,end)
+        console.log( props.model.getStart())
     })
     return (
         <SafeAreaView>

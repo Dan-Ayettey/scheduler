@@ -1,7 +1,7 @@
 import {ScrollView, Text, TouchableOpacity, View } from "react-native";
 import {styles, systemColor} from "../styles/style";
 import {FontAwesome} from "@expo/vector-icons";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { PersistenceController } from "../controllers/PersistenceController";
 import { PersistenceModel } from "../models/PersistenceModel";
 import { modelFromCalenderItems } from "./Content";
@@ -27,7 +27,10 @@ export const AppBarItems=()=>{
 }
 export const AppBar=()=>{
     const  [isLogin ,setIsLogin]=useState(getIsLogout())
-    console.log(getIsLogout())
+    useEffect((() => {
+        console.log(getIsLogout(),899)
+    }))
+
 
     return(
         <View>
@@ -38,9 +41,9 @@ export const AppBar=()=>{
 
 export const Bar=()=>{
 
-    const persistenceModel=new  PersistenceModel();
-    const persistenceController=new PersistenceController(persistenceModel);
+    const persistenceController=new PersistenceController('scheduler');
     persistenceController.createTable();
+
     const [isMenu,setIsMenu]=useState(true);
     const  [isLogout,setIsLogout]=useState(true)
     const  [isItems,setIsItem]=useState(true)
@@ -107,9 +110,9 @@ export const Bar=()=>{
 
      */
     return(
-        <View style={{flex:1}}>
 
-            <View style={{flex:0}}>
+
+            <View >
 
                 {  isLogout ? <View style={[styles.appBarContainerItems,styles.appBarContainer]}>
 
@@ -141,15 +144,15 @@ export const Bar=()=>{
                             modelFromCalenderItems.getTag().toString(),
                             modelFromCalenderItems.getCellNumber(),
                             modelFromCalenderItems.getContact().toString(),
-                            modelFromCalenderItems.getStart()+'',
-                            modelFromCalenderItems.getEnd()+'',
+                            modelFromCalenderItems.getStart() + '',
+                            modelFromCalenderItems.getEnd() + '',
                             modelFromCalenderItems.getMonth(),
                             modelFromCalenderItems.getDay(),
                             modelFromCalenderItems.getTask().toString(),
                             modelFromCalenderItems.getDayName(),
                             modelFromCalenderItems.getAddress().toString(),
                             modelFromCalenderItems.getTelephone(),
-                            modelFromCalenderItems.getDate()+'',
+                            modelFromCalenderItems.getDate() + '',
                             modelFromCalenderItems.getLocation(),
                             modelFromCalenderItems.getLongitude(),
                             modelFromCalenderItems.getLatitude(),
@@ -166,7 +169,6 @@ export const Bar=()=>{
                     </TouchableOpacity>
 
                     <TouchableOpacity onPress={()=>{
-                        console.log("skfjdfjd")
 
                         !isMenu ? setIsMenu(true):setIsMenu(false)
                     }}>
@@ -178,14 +180,7 @@ export const Bar=()=>{
 
 
             </View>
-            <ScrollView style={{flex:7}}>
 
 
-            </ScrollView>
-            <View style={{flex:0}}>
-                <FooterBar/>
-            </View>
-
-        </View>
     )
 }

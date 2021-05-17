@@ -1,6 +1,6 @@
-import { Image, ScrollView, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { Image, Platform, ScrollView, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { styles, systemColor } from "../styles/style";
 import { Dashboard } from "./Dashboard";
 import { showToastWithGravity } from "./PickTime";
@@ -9,13 +9,19 @@ import { PersistenceController } from "../controllers/PersistenceController";
 import { UserModel } from "../models/UserModel";
 import { UserController } from "../controllers/userController";
 import { AppBar } from "./Header";
+import { modelFromCalenderItems } from "./Content";
 export const checkNumber=(text:string)=>{
 
     if(text.match('\^[0-9]+$')){
 
         return true
     }else {
-        showToastWithGravity('Input must not be number')
+        if(Platform.OS==='android'){
+            showToastWithGravity('Input must not be number')
+        }else {
+            alert('Input must not be number')
+        }
+
         return  false
 
     }
@@ -23,23 +29,30 @@ export const checkNumber=(text:string)=>{
 
 
 }
-export const Auth=()=>{
-    const persistenceModel=new  PersistenceModel()
-    const persistenceController=new PersistenceController(persistenceModel)
+export const Auth=(props:{callback: (isOk: boolean,userData:{})=>void})=>{
+
+    const persistenceController=new PersistenceController('scheduler')
     const userModel=new UserModel()
     const userController=new UserController(userModel);
+    const [email,setEmail]=useState('')
+    const [password,setPassword]=useState('')
 
     const [isLoginVisible,setIsLoginVisible]=useState(true);
     const [isProfileVisible,setIsProfileVisible]=useState(false);
     const [cellNumber,setCellNumber]=useState('');
 
-    if(!isProfileVisible){
+    useEffect((() => {
+        userController.setPassword(password)
+        userController.setEmail(email)
+        userController.setCellNumber(cellNumber)
+    }))
+
         return(
 
             <View>
                 {
                     isLoginVisible ?
-                        <ScrollView  style={[styles.loginContainer,styles.loginItems]} scrollEnabled={true} showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false} >
+                        <ScrollView   scrollEnabled={true} showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false} >
                             <Text style={styles.loginHeading}>
                                 Login and Schedule for free
                             </Text>
@@ -74,15 +87,19 @@ export const Auth=()=>{
                             </View>
                             <View style={styles.loginInputsContainer}>
                                 <TextInput style={styles.loginInput}  placeholder={'Email'} onChangeText={(text)=>{
+                                    setEmail(text)
 
                                 }}/>
                                 <TextInput style={styles.loginInput} placeholder={'Password'} onChangeText={(text)=>{
+                                setPassword(text)
 
                                 }}/>
                                 <TextInput keyboardType={"phone-pad" || "number-pad"} style={styles.loginInput} placeholder={'Or phone number'} onChangeText={(text)=>{
                                 const isValid= checkNumber(text)
+
                                     if(isValid){
                                         setCellNumber(text)
+                                        userController.setCellNumber(cellNumber)
                                     }else {
                                         setCellNumber(cellNumber)
                                         if(cellNumber.toString().length===1){
@@ -92,9 +109,22 @@ export const Auth=()=>{
                                 }} value={cellNumber.toString()}/>
                                 <View style={styles.loginButtonContainer}>
                                     <TouchableOpacity  onPress={()=>{
+                                    console.log(modelFromCalenderItems.getDateIndex(),modelFromCalenderItems.getTodayDate(),modelFromCalenderItems.getDayName())
+                                     persistenceController.auth([userModel.getEmail(),userModel.getPassword()],(rows,isOk,msg)=>{
+                                         if(rows.length>0 && isOk){
+                                             setIsProfileVisible(isOk)
+                                             props.callback(isOk,{email:userModel.getEmail(),password:userModel.getPassword()})
 
-                                        setIsProfileVisible(true)
-                                        console.log(isProfileVisible)
+                                         }else {
+                                             props.callback(isOk,{})
+                                             alert(msg)
+                                         }
+
+
+
+                                     })
+
+
                                     }}>
                                         <Text style={styles.loginButton} >Login</Text>
                                     </TouchableOpacity>
@@ -110,27 +140,21 @@ export const Auth=()=>{
 
 
                         </ScrollView>
-                        : <Register userModel={userModel} userController={userController} persistenceController={persistenceController}/>}
+                        : <Register />}
 
             </View>
 
         )
-    }else {
-   return(
-       <View style={[styles.loginDashBoardContainer]}>
-        <AppBar/>
-       </View>
-     )
-    }
+
+
 
 }
 
 
- export const Register=(props:{
-     persistenceController: PersistenceController;
-     userController:UserController;
-     userModel: UserModel;
- })=>{
+ export const Register=()=>{
+     const persistenceController=new PersistenceController('scheduler')
+     const userModel=new UserModel()
+     const userController=new UserController(userModel);
      const [cellNumber,setCellNumber]=useState('')
      const [tag,setTag]=useState('')
      const [firstName,setFirstName]=useState('')
@@ -141,11 +165,19 @@ export const Auth=()=>{
 
         const [isLoginVisible,setIsLoginVisible]=useState(true)
         const [isCreated,setIsCreated]=useState(true)
+        useEffect(()=>{
+            userController.setTag(tag)
+            userController.setFirstName(firstName)
+            userController.setLastName(lastName)
+            userController.setEmail(email)
+            userController.setPassword(password)
+            userController.setCellNumber(cellNumber)
 
+        })
 
      return(
             isLoginVisible ?
-                <ScrollView scrollEnabled={true} showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false}>
+                <View style={{height:530,marginBottom:6}} >
 
                         <View style={styles.register}>
                             <Text style={styles.loginHeading}>
@@ -172,33 +204,36 @@ export const Auth=()=>{
                                     </TouchableOpacity>
 
                                 </View>
+                                <View>
+                                    { isCreated?  <Image source={require('../assets/loading_24.gif')}/> : null}
+                                </View>
                             </View>
                             <View style={styles.loginInputsContainer}>
                                 <TextInput style={styles.loginInput} placeholder={'Tag name or company name'}  onChangeText={(text)=>{
                                    setTag(text)
-                                    props.userController.setTag(text)
+
                                 }} value={tag}/>
                                 <TextInput style={styles.loginInput} placeholder={'first name'}  onChangeText={(text)=>{
                                  setFirstName(text);
-                                    props.userController.setFirstName(text)
+
                                 }} value={firstName}/>
                                 <TextInput style={styles.loginInput} placeholder={'Last name'}  onChangeText={(text)=>{
                                    setLastName(text)
-                                    props.userController.setLastName(text)
+
 
                                 }} value={lastName}/>
                                 <TextInput style={styles.loginInput} placeholder={'Email'}  onChangeText={(text)=>{
                                   setEmail(text)
-                                    props.userController.setEmail(text)
+
                                 }} value={email}/>
                                 <TextInput style={styles.loginInput} placeholder={'Password'}  onChangeText={(text)=>{
                                   setPassword(text)
-                                    props.userController.setPassword(text)
+
                                 }} value={password}/>
                                 <TextInput keyboardType={"phone-pad" || "number-pad"} style={styles.loginInput} placeholder={'Or phone number'}  onChangeText={(text)=>{
                                     const isValid= checkNumber(text)
                                     if(isValid){
-                                        props.userController.setCellNumber(text)
+
                                         setCellNumber(text)
                                     }else {
                                         setCellNumber(cellNumber)
@@ -208,50 +243,50 @@ export const Auth=()=>{
                                     }
 
                                 }} value={cellNumber}/>
+
                                 <View style={styles.loginButtonContainer}>
-                                    <TouchableOpacity onPress={()=>{
+                                    <TouchableOpacity  onPress={()=>{
+
                                         const user=[
                                             0,
-                                            props.userModel.getFirstName(),
-                                            props.userModel.getLastName(),
-                                            props.userModel.getEmail(),
-                                            props.userModel.getPassword(),
-                                            props.userModel.getTag().toString(),
-                                            props.userModel.getCellNumber(),
-                                            props.userModel.getContact().toString(),
-                                            props.userModel.getStart()+'',
-                                            props.userModel.getEnd()+'',
-                                            props.userModel.getMonth(),
-                                            props.userModel.getDay(),
-                                            props.userModel.getTask().toString(),
-                                            props.userModel.getDayName(),
-                                            props.userModel.getAddress().toString(),
-                                            props.userModel.getTelephone(),
-                                            props.userModel.getDate()+'',
-                                            props.userModel.getLocation(),
-                                            props.userModel.getLongitude(),
-                                            props.userModel.getLatitude(),
-                                            props.userModel.getLatitudeDelta(),
-                                            props.userModel.getLongitudeDelta(),
-                                            props.userModel.getIsActive(),
-                                            props.userModel.getIsNotify()
+                                            userModel.getFirstName(),
+                                            userModel.getLastName(),
+                                            userModel.getEmail(),
+                                            userModel.getPassword(),
+                                            userModel.getTag().toString(),
+                                            userModel.getCellNumber(),
+                                            userModel.getContact().toString(),
+                                            userModel.getStart()+'',
+                                            userModel.getEnd()+'',
+                                            userModel.getMonth(),
+                                            userModel.getDay(),
+                                            userModel.getTask().toString(),
+                                            userModel.getDayName(),
+                                            userModel.getAddress().toString(),
+                                            userModel.getTelephone(),
+                                            userModel.getDate()+'',
+                                            userModel.getLocation(),
+                                            userModel.getLongitude(),
+                                            userModel.getLatitude(),
+                                            userModel.getLatitudeDelta(),
+                                            userModel.getLongitudeDelta(),
+                                            userModel.getIsActive(),
+                                            userModel.getIsNotify()
                                         ]
 
-                                         const isOk=   props.persistenceController.createUser(user);
+                                        persistenceController.createUser(user,(isOk:Boolean,msg:string) =>{
 
-                                      setTimeout(()=>{
-                                          if(isOk){
-                                              console.log(isOk)
-                                              setIsLoginVisible(!isOk)
-                                              clearInterval(this)
-
-                                          }else {
-                                              showToastWithGravity('The email already exist, please try to login instead')
-                                          }
-                                      },500)
+                                            if(isOk){
+                                                alert(msg)
+                                                setIsLoginVisible(false)
+                                            }else {
+                                                alert(msg)
+                                            }
 
 
+                                        },);
 
+                                        //showToastWithGravity('The email already exist, please try to login instead')
                                     }}>
                                         <Text style={styles.loginButton} >Submit</Text>
                                     </TouchableOpacity>
@@ -260,10 +295,8 @@ export const Auth=()=>{
                                     }}>
                                         <Text style={styles.loginButtonSignUp} >Login</Text>
                                     </TouchableOpacity>
-                                    <TouchableOpacity>
-                                        { isCreated?  <Image source={require('../assets/loading_24.gif')}/> : null}
-                                    </TouchableOpacity>
                                 </View>
+
 
                             </View>
 
@@ -271,7 +304,9 @@ export const Auth=()=>{
 
                         </View>
 
-                </ScrollView> :<Auth/>
+                </View> :<Auth callback={((isOk, userData) => {
+
+                })}/>
         )
 
     }

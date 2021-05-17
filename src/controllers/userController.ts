@@ -10,11 +10,16 @@ export class UserController {
         this.userModel.setFirstName(firstName);
     }
 
-
+    public setYear=(year:string)=>{
+        this.userModel.setYear(year);
+    }
     public setLastName=(lastName:string)=>{
         this.userModel.setLast(lastName);
     }
+    public setIsActive=(active:boolean)=>{
 
+        this.userModel.setIsActive(active);
+    }
 
     public setEmail=(email:string)=>{
         this.userModel.setEmail(email);

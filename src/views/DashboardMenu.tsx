@@ -16,6 +16,7 @@ import React, { useState } from "react";
 import { CalenderItems} from "./Content";
 import {  ActivitiesLog } from "./Activities";
 import { FooterBar } from "./Footer";
+import { Bar } from "./Header";
 
 
 
@@ -34,10 +35,6 @@ export const DashboardMenuItems=function (props:any) {
 
     <View >
 
-
-
-        <SafeAreaView>
-            <ScrollView style={[{alignSelf:'center',width:'100%',height:height-104}]} showsHorizontalScrollIndicator={false} showsVerticalScrollIndicator={false}>
                 <View style={[styles.dashboardMenuItemsContainer]}>
 
                     <TouchableOpacity onPress={()=>{
@@ -140,13 +137,9 @@ export const DashboardMenuItems=function (props:any) {
                     isCalendar && !isLog ? <CalenderItems/> :null
                 }
 
-
                 {
                     isLog  && !isCalendar? <ActivitiesLog/> : isCalendar ? null:<ActivitiesLog/>
                 }
-            </ScrollView>
-
-        </SafeAreaView>
 
     </View>
     )

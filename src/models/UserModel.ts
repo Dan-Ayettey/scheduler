@@ -57,7 +57,9 @@ export class UserModel {
         return this.telephone;
     }
     public setEmail=(email:string)=>{
+
         this.email=email;
+
     }
 
     public getEmail=()=>{
@@ -92,7 +94,13 @@ export class UserModel {
     public getMonth=()=>{
         return this.month;
     }
+    public setYear=(year:string)=>{
+        this.year=year;
+    }
 
+    public getYear=()=>{
+        return this.year;
+    }
     public setDay=(day:string)=>{
         this.day=day;
     }
@@ -117,15 +125,16 @@ export class UserModel {
        }
     private tag: string[]=[];
     private cellNumber: string='';
-    private contact=[];
+    private contact:[]=[];
     private isNotify: number=0;
+    private year: string='';
     public setTag(tag: string) {
         this.tag.push(tag)
     }
     public setIsNotify(isNotify:number) {
         this.isNotify=isNotify
     }
-    public setConatct(contact: []) {
+    public setContact(contact: []) {
         this.contact = contact
     }
 
@@ -204,6 +213,7 @@ export class UserModel {
     }
 
     getIsActive() {
+        console.log(this.isActive)
         return this.isActive;
     }
 
