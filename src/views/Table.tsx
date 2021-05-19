@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Alert, Modal, SafeAreaView, Text, TextInput, TouchableHighlight, TouchableOpacity, View } from "react-native";
 import { styles, systemColor } from "../styles/style";
 import { FontAwesome } from "@expo/vector-icons";

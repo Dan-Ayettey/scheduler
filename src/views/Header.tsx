@@ -1,12 +1,11 @@
-import {ScrollView, Text, TouchableOpacity, View } from "react-native";
+import {Text, TouchableOpacity, View } from "react-native";
 import {styles, systemColor} from "../styles/style";
 import {FontAwesome} from "@expo/vector-icons";
 import React, { useEffect, useState } from "react";
 import { PersistenceController } from "../controllers/PersistenceController";
-import { PersistenceModel } from "../models/PersistenceModel";
 import { modelFromCalenderItems } from "./Content";
 import { Auth } from "./Auth";
-import { FooterBar } from "./Footer";
+
 let isLogOut=true;
 export let setLogout =(logOut:boolean)=>{
     isLogOut=logOut
@@ -160,7 +159,9 @@ export const Bar=()=>{
                             modelFromCalenderItems.getLongitudeDelta(),
                             modelFromCalenderItems.getIsActive(),
                             modelFromCalenderItems.getIsNotify()
-                        ]);
+                        ],((isOk, msg) => {
+
+                        }));
                         //persistenceController.searchById('',[])
                     }}>
                         <Text style={[styles.appBarIcon,styles.save]}>
@@ -176,7 +177,9 @@ export const Bar=()=>{
                     </TouchableOpacity>
 
 
-                </View>   :<Auth/>}
+                </View>   :<Auth callback={((isOk, userData) => {
+
+                })}/>}
 
 
             </View>

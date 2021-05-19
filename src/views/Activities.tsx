@@ -1,7 +1,7 @@
-import { FlatList, SafeAreaView, Text, TouchableOpacity, View } from "react-native";
+import { FlatList, View } from "react-native";
 import React from "react";
 import { TableHeader, TableRow } from "./Table";
-import { calendar } from "./Calender";
+import { calender } from "./Calender";
 import { styles } from "../styles/style";
 
 
@@ -15,9 +15,9 @@ export const ActivitiesLog=function () {
             'fade fades into view\n' +
             'none appears without an animation',
         location:'Stockholm',
-        day:calendar.dayName[calendar.dayIndex-1],
-        month:calendar.month[calendar.monthIndex].month,
-        date: calendar.monthIndex +''+calendar.dayIndex+' '+calendar.year
+        day:calender().dayName[calender().dayIndex-1],
+        month:calender().month[calender().monthIndex].month,
+        date: calender().monthIndex +''+calender().dayIndex+' '+calender().year
     }];
 
 return (

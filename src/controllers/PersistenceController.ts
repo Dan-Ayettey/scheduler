@@ -1,6 +1,4 @@
 import {PersistenceModel} from "../models/PersistenceModel";
-import { showToastWithGravity } from "../views/PickTime";
-import { useLayoutEffect } from "react";
 
 export class PersistenceController {
     private persistenceModel: PersistenceModel;
@@ -25,7 +23,7 @@ export class PersistenceController {
                     if (res.rows.length == 0) {
                         tx.executeSql('DROP TABLE IF EXISTS users', []);
                         tx.executeSql('DROP TABLE IF EXISTS task', []);
-                        tx.executeSql('CREATE TABLE IF NOT EXISTS task(task_id,email,password,task,FOREIGN KEY (task_id) REFERENCES users(user_id))', []);
+                        tx.executeSql('CREATE TABLE IF NOT EXISTS task(task_id,email,password,task, FOREIGN KEY (task_id) REFERENCES users(user_id))', []);
                         tx.executeSql(`CREATE TABLE IF NOT EXISTS users(user_id,
                                                                      firstName,
                                                                      lastName,
@@ -113,6 +111,7 @@ export class PersistenceController {
 
        this.persistenceModel.sqlInstance().transaction(function (tx:any) {
            tx.executeSql('SELECT *  from users', [], ((transaction1:any, resultSet:any) => {
+               request[20]=true
                request[0] = resultSet.rows.length + 1;
                tx.executeSql('SELECT *  from users WHERE email=$1', [request[3]], ((transaction1:any, resultSet:any) => {
                if(resultSet.rows.length==0){
@@ -208,11 +207,12 @@ export class PersistenceController {
     }
 
     createTask(request:any,  resultCallback: (isOk:boolean, msg:string) => void) {
+        console.log(request)
         this.persistenceModel.sqlInstance().transaction(function (tx:any) {
             tx.executeSql('SELECT *  from users', [], ((transaction1:any, resultSet:any) => {
-                request[0] = resultSet.rows.length + 1;
-                tx.executeSql('SELECT *  from users WHERE(email=$1 AND  email=$1)', request, ((transaction1:any, resultSet:any) => {
-                    if(resultSet.rows.length==0){
+
+                tx.executeSql('SELECT *  from users WHERE(email=$1 AND password=$2)', [request[1].email,request[2].password], ((transaction1:any, resultSet:any) => {
+
                         try {
                             tx.executeSql(`INSERT INTO task(task_id,
                                                 email,
@@ -237,9 +237,6 @@ export class PersistenceController {
                         }catch (e) {
                             console.log(e)
                         }
-                    }else {
-                        resultCallback(false,'User already exist, try login instead')
-                    }
 
                 }),(tx: any, results: any) => {
                     console.log(results)

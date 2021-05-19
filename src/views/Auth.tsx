@@ -2,14 +2,12 @@ import { Image, Platform, ScrollView, Text, TextInput, TouchableOpacity, View } 
 import { FontAwesome } from "@expo/vector-icons";
 import React, { useEffect, useState } from "react";
 import { styles, systemColor } from "../styles/style";
-import { Dashboard } from "./Dashboard";
 import { showToastWithGravity } from "./PickTime";
-import { PersistenceModel } from "../models/PersistenceModel";
 import { PersistenceController } from "../controllers/PersistenceController";
 import { UserModel } from "../models/UserModel";
 import { UserController } from "../controllers/userController";
-import { AppBar } from "./Header";
 import { modelFromCalenderItems } from "./Content";
+import { userModel } from "../../App";
 export const checkNumber=(text:string)=>{
 
     if(text.match('\^[0-9]+$')){
@@ -40,10 +38,13 @@ export const Auth=(props:{callback: (isOk: boolean,userData:{})=>void})=>{
     const [isLoginVisible,setIsLoginVisible]=useState(true);
     const [isProfileVisible,setIsProfileVisible]=useState(false);
     const [cellNumber,setCellNumber]=useState('');
+    const [calendarControllerState,setcalendarControllerState]=useState(modelFromCalenderItems);
+
 
     useEffect((() => {
         userController.setPassword(password)
         userController.setEmail(email)
+        setcalendarControllerState(modelFromCalenderItems)
         userController.setCellNumber(cellNumber)
     }))
 
@@ -109,11 +110,54 @@ export const Auth=(props:{callback: (isOk: boolean,userData:{})=>void})=>{
                                 }} value={cellNumber.toString()}/>
                                 <View style={styles.loginButtonContainer}>
                                     <TouchableOpacity  onPress={()=>{
-                                    console.log(modelFromCalenderItems.getDateIndex(),modelFromCalenderItems.getTodayDate(),modelFromCalenderItems.getDayName())
+
                                      persistenceController.auth([userModel.getEmail(),userModel.getPassword()],(rows,isOk,msg)=>{
                                          if(rows.length>0 && isOk){
-                                             setIsProfileVisible(isOk)
-                                             props.callback(isOk,{email:userModel.getEmail(),password:userModel.getPassword()})
+                                             props.callback(isOk,{modelFromCalenderItems})
+                                             //setIsProfileVisible(isOk)
+
+                                             if(calendarControllerState.getStart().hour.trim() !==''  || calendarControllerState.getEnd().hour.trim()!==''
+                                                 ||calendarControllerState.getStart().minutes.trim()!=='' || calendarControllerState.getEnd().minutes.trim()!=='') {
+
+                                                 persistenceController.getAllTaskData((rows => {
+                                                     const length=rows.length===0? rows.length:rows.length
+                                                     console.log(rows)
+                                                     persistenceController.createTask([
+                                                         length, 'danni.ayette@gmail.com','Mother_30', {
+                                                             'location': '',
+                                                             'longitude': '',
+                                                             'latitude': '',
+                                                             'longitudeDelta': '',
+                                                             'latitudeDelta': '',
+                                                             'email': userModel.getEmail(),
+                                                             'todayDate': calendarControllerState.getTodayDate(),
+                                                             'start': calendarControllerState.getStart(),
+                                                             'end': calendarControllerState.getEnd(),
+                                                             'month': calendarControllerState.getMonth(),
+                                                             'day': calendarControllerState.getDay(),
+                                                             'dayName': calendarControllerState.getDayName(),
+                                                             "date": {
+                                                                 "date": calendarControllerState.getDay(),
+                                                                 "month": calendarControllerState.getMonth(),
+                                                                 "year": calendarControllerState.getYear()
+                                                             }
+                                                         }
+                                                     ], (isOk, msg) => {
+                                                         if(isOk){
+                                                             alert(msg)
+                                                         }else {
+                                                             console.log(msg)
+                                                         }
+
+                                                     });
+
+
+                                                 }))
+
+                                             } else {
+                                                 alert("Requires at list one start time or end" )
+                                             }
+
 
                                          }else {
                                              props.callback(isOk,{})
@@ -123,6 +167,8 @@ export const Auth=(props:{callback: (isOk: boolean,userData:{})=>void})=>{
 
 
                                      })
+
+
 
 
                                     }}>

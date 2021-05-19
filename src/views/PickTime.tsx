@@ -1,16 +1,14 @@
 // Time inputs
 import React, { useEffect, useState } from "react";
 import {
-    Dimensions, Modal,
-    SafeAreaView,
+    Dimensions, SafeAreaView,
     Text,
     TextInput,
     ToastAndroid,
     View
 } from "react-native";
 import { styles} from "../styles/style";
-import { UserController } from "../controllers/userController";
-import { UserModel } from "../models/UserModel";
+
 export const showToastWithGravity = (message:string) => {
     ToastAndroid.showWithGravity(
         message,
@@ -39,8 +37,6 @@ export const PickTime= (props:any)=> {
     useEffect(()=>{
         props.userController.setStart(start)
         props.userController.setEnd(end)
-
-        console.log( props.model.getStart())
     })
     return (
         <SafeAreaView>
@@ -72,7 +68,7 @@ export const PickTime= (props:any)=> {
                     if(isValid){
                         setStart({hour: start.hour,minutes: text.toString().replace(/[^0-9]/g, '')})
                         setVisibility(false)
-                        console.log(start)
+
 
                     }else {
                         setVisibility(true)
@@ -86,7 +82,6 @@ export const PickTime= (props:any)=> {
                         setEnd({hour:
                                 text.toString().replace(/[^0-9]/g, ''),minutes: end.minutes})
                         setVisibility(false)
-                        console.log(end)
 
                     }else {
                         setEnd({minutes: end.minutes, hour:end.hour})

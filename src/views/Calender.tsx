@@ -2,7 +2,7 @@ import { Dimensions, FlatList, Text, TouchableOpacity, View } from "react-native
 import { styles, systemColor } from "../styles/style";
 import React, { useEffect, useState } from "react";
 
-export const calendar=()=>{
+export const calender=()=>{
     const date=new Date()
     return{
 
@@ -29,15 +29,17 @@ export const calendar=()=>{
 export const Months=(props:any)=>{
 
     {/*months bar*/}
-    let today_sDate=calendar().day;
+    let today_sDate=calender().day;
         let [day,setDay]=useState(today_sDate);
-    const [month,setMonth]=useState(calendar().month[calendar().monthIndex].month);
-    const [monthSignal,setMonthSignal]=useState(calendar().monthIndex);
+    const [index,setIndex]=useState(0);
+    const [month,setMonth]=useState(calender().month[calender().monthIndex].month);
+    const [monthSignal,setMonthSignal]=useState(calender().monthIndex);
     useEffect(()=>{
         props.userController.setMonthIndex(monthSignal);
         props.userController.setMonth(month);
         props.userController.setDay(day);
-        props.userController.setYear(calendar().year.toString())
+        props.userController.setYear(calender().year.toString())
+
     })
     const dateSwitch=(index:number)=>{
 
@@ -71,7 +73,7 @@ export const Months=(props:any)=>{
                 break;
             default:
 
-                setDay(calendar().day)
+                setDay(calender().day)
         }
     }
 
@@ -81,25 +83,25 @@ export const Months=(props:any)=>{
         <View style={styles.monthContainer}>
 
     <FlatList  horizontal={true} showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false}
-    initialScrollIndex={monthSignal} data={calendar().month}
+    initialScrollIndex={monthSignal} data={calender().month}
     renderItem={({item,index})=>{return ( <TouchableOpacity key={index}
         onPress={(event) => {
             setMonthSignal(index)
-            setMonth(calendar().month[index].month)
+            setMonth(calender().month[index].month)
             dateSwitch(index)
         }} style={styles.month}>
         <Text style={[{color: index === monthSignal ? 'yellow' : systemColor.color}]}
         onPress={(event) => {
             setMonthSignal(index)
-            setMonth(calendar().month[index].month)
-            setDay(calendar().day)
+            setMonth(calender().month[index].month)
+            setDay(calender().day)
         }}>{item.month}</Text>
         </TouchableOpacity>)}}
         keyExtractor={((item, index) => index.toString())}
         />
         </View>
          <DayName model={props.model} userController={props.userController}/>
-         <Dates  model={props.model}  day={day}  userController={props.userController}/>
+         <Dates  model={props.model}  index={monthSignal}  userController={props.userController}/>
 
         </View>
 
@@ -108,8 +110,8 @@ export const Months=(props:any)=>{
 }
 export  const DayName=function (props:any){
 
-    const [daySignal,setDaySignal]=useState(calendar().dayIndex-1);
-    const [dayName,setDayName]=useState(calendar().dayName[calendar().dayIndex-1])
+    const [daySignal,setDaySignal]=useState(calender().dayIndex-1);
+    const [dayName,setDayName]=useState(calender().dayName[calender().dayIndex-1])
     daySignal ===-1 ? setDaySignal(6):null
     useEffect(()=>{
         props.userController.setTodayDate(daySignal)
@@ -120,7 +122,7 @@ export  const DayName=function (props:any){
         <View style={[styles.dayName]}>
             {/*Days name*/}
             <FlatList style={styles.dayName} horizontal={true} showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false}
-                      data={calendar().dayName} initialScrollIndex={daySignal}
+                      data={calender().dayName} initialScrollIndex={daySignal}
                       renderItem={({item,index})=>
                           <View>
 
@@ -144,10 +146,10 @@ export  const DayName=function (props:any){
 export const Dates=function (props:any) {
 
     const accumulateDays=(index:number)=>{
-        return Array.from(Array(new Date(calendar().year,index+1,0).getDate()).keys())
+        return Array.from(Array(new Date(calender().year,index+1,0).getDate()).keys())
     }
     const {width, height}=Dimensions.get('window')
-    const [signal,setSignal]=useState(calendar().dateIndex-1);
+    const [signal,setSignal]=useState(calender().dateIndex);
     const [index,setIndex]=useState(props.index);
     const [day,setDay]=useState(accumulateDays(signal));
 
@@ -155,7 +157,7 @@ export const Dates=function (props:any) {
        setDay(props.day)
         props.userController.setTodayDate(signal)
         props.userController.setDay(day)
-        console.log(props.day)
+
 
     })
 
@@ -166,8 +168,8 @@ export const Dates=function (props:any) {
          flexWrap: 'wrap',alignContent:'stretch',justifyContent:'center' }}>
          {/*dates bar*/}
 
-         {accumulateDays(index).concat([1]).map((items:any,index:number)=>(
-             <View key={index} style={[width<=710?{padding:10,paddingLeft:18.4,paddingRight:18.4,backgroundColor:systemColor.backgroundColor,margin:0.6}:{margin:0.6,padding:40,paddingLeft:40,paddingRight:40,backgroundColor:systemColor.backgroundColor}]}>
+         {accumulateDays(props.index).concat([1]).map((items:any,index:number)=>(
+             <View key={index} style={[width<=710?{padding:10,paddingLeft:18.4,paddingRight:18.4,backgroundColor:systemColor.backgroundColor,margin:0.6}:{margin:0.6,padding:20,paddingLeft:20,paddingRight:20,backgroundColor:systemColor.backgroundColor}]}>
 
              <TouchableOpacity activeOpacity={10} style={[{}]}>
 
@@ -182,7 +184,7 @@ export const Dates=function (props:any) {
                              setSignal(index)
                              props.userController.setTodayDate(index);
                          } }>
-                             {index+1}
+                             {index}
                          </Text>
                      </View>
 

@@ -1,9 +1,4 @@
-import * as SQLite  from 'expo-sqlite';
-import * as Lite  from 'sqlite';
-
 const  {openDatabase,Database} =require('expo-sqlite');
-import openDatabases from 'react-native-sqlite-storage';
-import { Alert } from "react-native";
 
 export class PersistenceModel {
      private readonly db

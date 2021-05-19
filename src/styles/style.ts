@@ -50,21 +50,22 @@ export const systemBar={
      centeredView: {
          flex: 1,
          justifyContent: "center",
+         borderColor:'none',
+         borderWidth:0,
+         width:350,
+         margin:10,
          alignItems: "center",
-         shadowColor: "#000",
-         shadowOffset: {
-             width: 0,
-             height: 2
-         },
-         shadowOpacity: 0.25,
-         shadowRadius: 3.84,
-         elevation: 5
+
      },
      modalView: {
+         borderWidth:0,
          margin: 20,
-         backgroundColor: "white",
-         borderRadius: 20,
-         padding: 35,
+         marginTop:10,
+         alignSelf:'center',
+         backgroundColor: 'white',
+         padding:20,
+         borderColor:'none',
+         borderRadius: 10,
          alignItems: "center",
          shadowColor: "#000",
          shadowOffset: {
@@ -78,8 +79,10 @@ export const systemBar={
      openButton: {
          backgroundColor: "#F194FF",
          borderRadius: 6,
-         margin:4,
-         padding: 10,
+         margin:20,
+         padding: 20,
+         paddingBottom:10,
+         paddingTop:10,
 
          shadowColor: "#000",
          shadowOffset: {
@@ -97,33 +100,58 @@ export const systemBar={
          textAlign: "center",
 
      },
-     modalText: {
+     modalTextArea:{
          marginBottom: 15,
-         height:38,
+         height:150,
+         flexWrap:'wrap',
+         shadowColor: "#000",
+         padding:5,
+         marginRight:10,
+         textAlign: "left",
+         borderWidth:1,
+         borderRadius: 4,
+         width:350,
+         alignSelf:'flex-start',
+         borderColor:systemColor.backgroundColor,
+     },
+     modalTextName: {
+         marginBottom: 15,
+         height:42,
          flexWrap:'wrap',
          shadowColor: "#000",
          padding:5,
 
          textAlign: "left",
          borderWidth:1,
-         margin:4,
+         marginRight:10,
          borderRadius: 4,
-         width:250,
-         overflow:'scroll',
+         width:350,
+         alignSelf:'flex-start',
+         borderColor:systemColor.backgroundColor,
+
+
+     },
+     modalText: {
+         marginBottom: 15,
+         height:42,
+         flexWrap:'wrap',
+         shadowColor: "#000",
+         padding:5,
+
+         textAlign: "left",
+         borderWidth:1,
+         marginRight:10,
+         borderRadius: 4,
+         width:320,
+         alignSelf:'flex-start',
          borderColor:systemColor.backgroundColor,
 
 
      },
      modalButtons: {
         flexDirection:'row',
+         justifyContent:"space-around",
          shadowColor: "#000",
-         shadowOffset: {
-             width: 0,
-             height: 2
-         },
-         shadowOpacity: 0.25,
-         shadowRadius: 3.84,
-         elevation: 5
      },
 
      buttonLite: {
@@ -552,6 +580,10 @@ export const systemBar={
      },
      register:{
          marginTop:-60
+     },
+     modalTitle: {
+         alignSelf:'flex-start',
+         textAlign:'left'
      }
 
 

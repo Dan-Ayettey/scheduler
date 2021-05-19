@@ -20,25 +20,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a64a66bf-0a73-4734-aa5a-32026854c14d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/aws.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/aws.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/scheduler.db" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/scheduler.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controllers/PersistenceController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/PersistenceController.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/userController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/userController.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/models/PersistenceModel.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/PersistenceModel.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/UserModel.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/UserModel.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/styles/style.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/style.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/Activities.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Activities.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/Auth.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Auth.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/Calender.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Calender.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/Content.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Content.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/Dashboard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Dashboard.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/DashboardMenu.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/DashboardMenu.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Header.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/InitScene.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/InitScene.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/PickTime.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/PickTime.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/Table.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Table.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,6 +72,7 @@
     <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="show.migrate.to.gradle.popup" value="false" />
     <property name="ts.external.directory.path" value="C:\Users\ictte\Desktop\catalog-app\scheduler\node_modules\typescript\lib" />
   </component>
@@ -112,7 +110,9 @@
       <updated>1620716799452</updated>
       <workItem from="1620716805597" duration="79514000" />
       <workItem from="1620993483309" duration="161000" />
-      <workItem from="1620994666412" duration="95190000" />
+      <workItem from="1620994666412" duration="102606000" />
+      <workItem from="1621260163087" duration="4004000" />
+      <workItem from="1621369045387" duration="25987000" />
     </task>
     <servers />
   </component>
@@ -140,6 +140,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="573" y="127" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1620997510246" />
+    <state x="515" y="266" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1621263353731">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="515" y="266" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1536.824@0.0.1536.824" timestamp="1621263353731" />
     <state width="254" height="195" key="DatabaseViewActions_Filter" timestamp="1620925699783">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -148,22 +152,22 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="548" y="165" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1620903534520" />
-    <state width="1490" height="128" key="GridCell.Tab.0.bottom" timestamp="1621149029538">
+    <state width="1490" height="128" key="GridCell.Tab.0.bottom" timestamp="1621415753448">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1490" height="128" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1621149029538" />
-    <state width="1490" height="128" key="GridCell.Tab.0.center" timestamp="1621149029538">
+    <state width="1490" height="128" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1621415753448" />
+    <state width="1490" height="128" key="GridCell.Tab.0.center" timestamp="1621415753447">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1490" height="128" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1621149029538" />
-    <state width="1490" height="128" key="GridCell.Tab.0.left" timestamp="1621149029538">
+    <state width="1490" height="128" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1621415753447" />
+    <state width="1490" height="128" key="GridCell.Tab.0.left" timestamp="1621415753447">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1490" height="128" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1621149029538" />
-    <state width="1490" height="128" key="GridCell.Tab.0.right" timestamp="1621149029538">
+    <state width="1490" height="128" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1621415753447" />
+    <state width="1490" height="128" key="GridCell.Tab.0.right" timestamp="1621415753448">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1490" height="128" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1621149029538" />
+    <state width="1490" height="128" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1621415753448" />
     <state x="633" y="18" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog" timestamp="1621230176835">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

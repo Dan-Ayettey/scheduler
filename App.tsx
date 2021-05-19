@@ -1,18 +1,14 @@
-import { StatusBar } from 'expo-status-bar';
-import React, { useEffect, useState } from 'react';
-import { Dimensions, SafeAreaView, ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import React, { useEffect, useRef, useState } from 'react';
+import { Dimensions, ScrollView, Text, TouchableOpacity, View, StatusBar, SafeAreaView } from 'react-native';
 import { Auth, Register } from "./src/views/Auth";
-import { styles, systemBar, systemColor } from "./src/styles/style";
-import { AppBar, Bar } from "./src/views/Header";
+import { styles, systemColor } from "./src/styles/style";
 import { FontAwesome } from "@expo/vector-icons";
 import { modelFromCalenderItems } from "./src/views/Content";
-import { PersistenceModel } from "./src/models/PersistenceModel";
 import { PersistenceController } from "./src/controllers/PersistenceController";
-import { DashboardMenuItems } from "./src/views/DashboardMenu";
-import { FooterBar } from "./src/views/Footer";
 import { Dashboard } from "./src/views/Dashboard";
 import { UserModel } from "./src/models/UserModel";
 import { UserController } from "./src/controllers/userController";
+import { Colors } from "react-native/Libraries/NewAppScreen";
 
 function Home() {
     return (
@@ -196,24 +192,7 @@ export const MenuItemUnregistered=(props: {isOk:boolean;setIsRegister: (arg0: bo
 export var userModel:UserModel
 export default function App() {
 
-    const persistenceController=new PersistenceController('scheduler')
-    userModel=new UserModel()
-    const userController=new UserController(userModel);
-    persistenceController.createTable();
-    const [isMenu,setIsMenu]=useState(false);
-    const {width,height}=Dimensions.get('screen')
-    const  [isLogout,setIsLogout]=useState(false)
-    const  [isRegister,setIsRegister]=useState(false)
-    const  [isSave,setIsSave]=useState(true)
-    const  [isUser,setIsUser]=useState(false)
-    const  [isLogin,setIsLogin]=useState(false)
-    const  [userData,setUserData]=useState({
-        email: "",
-        password: ""
-    })
-    const  [isHome,setIsHome]=useState(false)
-    const  [isItems,setIsItem]=useState(true)
-    const  [isProfile,setIsProfile]=useState(true)
+
     {/*
           <StatusBar  style={"dark"} backgroundColor={systemBar.backgroundColor}/>
           <View style={[styles.appBarContainerItems,styles.appBarContainer,{flex:0}]}>
@@ -454,140 +433,181 @@ export default function App() {
 
                </View>*/}
 
-               useEffect(()=>{
-               userController.setEmail(userData.email)
-                userController.setPassword(userData.password)
 
-               })
 
 
 //      {//{ 'hour': userModel.get, minutes: string }={hour: '', minutes: ''}}
 
     return (
-         <View style={ {flex: 1,display:"flex"}}>
-             <View style={styles.header}>
-
-
-                 <View style={[styles.appBarContainerItems,styles.appBarContainer]}>
-
-                     {isUser?<View style={styles.userActivities}>
-                         <TouchableOpacity>
-                             <FontAwesome style={styles.appBarIcon} name={'user-circle-o'} size={22} color={systemColor.color} />
-                         </TouchableOpacity>
-
-                     </View>:null}
-                     {isUser?<View>
-                         <TouchableOpacity>
-                             <FontAwesome  style={[styles.appBarIcon,styles.appBarIconMessageAlertUser]} name={'user-circle-o'} size={14} color={systemColor.color} />
-
-                         </TouchableOpacity>
-                         <TouchableOpacity>
-                             <FontAwesome style={styles.appBarIcon} name={'bell'} size={15} color={systemColor.color} />
-
-                         </TouchableOpacity>
-                     </View>:null}
-
-                     {isSave? <TouchableOpacity onPress={()=>{
-
-                         if(userModel.getPassword() && userModel.getEmail()){
-                             persistenceController.auth([userModel.getEmail(),userModel.getPassword()],(rows => {
-
-                                 if(rows.length==0){
-                                     setIsSave(false)
-                                     setIsLogout(false)
-                                 }else {
-                                     persistenceController.createTask([
-                                         0,userModel.getEmail(),{
-                                             'location':'',
-                                             'longitude':'',
-                                 'latitude': '',
-                                 'longitudeDelta':'',
-                                 'latitudeDelta': '',
-                                 'email': userModel.getEmail(),
-                                 'todayDate':modelFromCalenderItems.getTodayDate(),
-                                 'start': modelFromCalenderItems.getStart(),
-                                 'end': modelFromCalenderItems.getEnd(),
-                                 'month':modelFromCalenderItems.getMonth(),
-                                 'day':modelFromCalenderItems.getDay(),
-                                 'dayName': modelFromCalenderItems.getDayName(),
-                                 "date": { "date": modelFromCalenderItems.getDay(), "month": modelFromCalenderItems.getMonth(), "year": modelFromCalenderItems.getYear() }
-                                         }
-                                     ],(isOk,msg)=>{
-                                       console.log(msg)
-                                     });
-
-                                    // setIsSave(true)
-                                     //setIsLogout(true)
-                                 }
-
-
-
-
-
-                             }))
-
-                         }else {
-                             if(!isLogin){
-                                 setIsSave(false)
-                                 setIsHome(true)
-                                 setIsLogout(true)
-                             }
-
-                         }
-
-
-                     }}>
-                         <Text style={[styles.appBarIcon,styles.save]}>
-                             Save
-                         </Text>
-                     </TouchableOpacity>:null}
-                     {isHome? <TouchableOpacity onPress={()=>{
-                         //setIsSave(true)
-                         setIsLogout(false)
-                         setIsRegister(false);
-                         setIsSave(true)
-                         setIsHome(false)
-                     }}>
-                         <Text style={[styles.appBarIcon]}>
-                             <FontAwesome size={30} style={[styles.appBarIcon]} name={'home'}/>
-                         </Text>
-                     </TouchableOpacity>:null}
-
-                     <TouchableOpacity onPress={()=>{
-
-                         !isMenu ? setIsMenu(true):setIsMenu(false)
-                     }}>
-                         <FontAwesome  size={24} style={[styles.appBarIcon,styles.bar]} name={'bars'} color={systemColor.color} />
-                     </TouchableOpacity>
-                 </View>
-                 {isMenu? <MenuItemUnregistered isOk={!isUser} setIsRegister={setIsRegister} setIsLogout={setIsLogout} setIsItem={setIsItem} setIsMenu={setIsMenu}  setIsUser={setIsUser} setIsSave={setIsSave} setIsHome={setIsHome}/> :
-                   null}
-             </View>
-             <View style={{flex:20}}>
-                 <ScrollView style={styles.scrollViewStyle}>
-                     {isLogout? <Auth callback={((isOk:boolean,userData:any)  => {
-
-                      if(isOk){
-                          setIsLogout(false)
-                          setIsLogin(true)
-                          setIsRegister(false)
-                          setIsProfile(false)
-                          setUserData(userData)
-                          setIsSave(true)
-                          setIsUser(true)
-                          setIsHome(false)
-
-                      }
-                     })}  /> : isRegister ?<Register/>:<Dashboard/>}
-                 </ScrollView>
-             </View>
-
-             <View style={styles.footer}>
-
-             </View>
-         </View>
+        <View style={styles.container}>
+          <StatusBar animated={true} translucent={true} barStyle={"dark-content"}/>
+          <AppContent/>
+        </View>
   );
 
+}
+
+const AppContent=()=>{
+    const persistenceController=new PersistenceController('scheduler')
+    userModel=new UserModel()
+    const userController=new UserController(userModel);
+    persistenceController.createTable();
+    const [isMenu,setIsMenu]=useState(false);
+    const {width,height}=Dimensions.get('screen')
+    const  [isLogout,setIsLogout]=useState(false)
+    const  [isRegister,setIsRegister]=useState(false)
+    const  [isSave,setIsSave]=useState(true)
+    const  [isUser,setIsUser]=useState(false)
+    const  [isLogin,setIsLogin]=useState(false)
+    let scroll=useRef<ScrollView>(null)
+
+    const  [userData,setUserData]=useState({
+        email: "",
+        password: "",
+        isActive:false
+    })
+    const  [isHome,setIsHome]=useState(false)
+    const  [isItems,setIsItem]=useState(true)
+    const  [isProfile,setIsProfile]=useState(true)
+    useEffect(()=>{
+        userController.setEmail(userData.email)
+        userController.setPassword(userData.password)
+
+    })
+    return <View style={ {flex: 1,display:"flex"}}>
+        <View style={styles.header}>
+
+
+            <View style={[styles.appBarContainerItems,styles.appBarContainer]}>
+
+                {isUser?<View style={styles.userActivities}>
+                    <TouchableOpacity>
+                        <FontAwesome style={styles.appBarIcon} name={'user-circle-o'} size={22} color={systemColor.color} />
+                    </TouchableOpacity>
+
+                </View>:null}
+                {isUser?<View>
+                    <TouchableOpacity>
+                        <FontAwesome  style={[styles.appBarIcon,styles.appBarIconMessageAlertUser]} name={'user-circle-o'} size={14} color={systemColor.color} />
+
+                    </TouchableOpacity>
+                    <TouchableOpacity>
+                        <FontAwesome style={styles.appBarIcon} name={'bell'} size={15} color={systemColor.color} />
+
+                    </TouchableOpacity>
+                </View>:null}
+
+                {isSave? <TouchableOpacity onPress={()=>{
+
+
+                        if (userModel.getPassword() && userModel.getEmail()) {
+                            persistenceController.auth([userModel.getEmail(), userModel.getPassword()], (rows => {
+
+                                if (rows.length == 0) {
+                                    setIsSave(false)
+                                    setIsLogout(false)
+                                } else {
+                                    const lenght=rows.length+1
+                                    persistenceController.createTask([
+                                        lenght, userModel.getEmail(), {
+                                            'location': '',
+                                            'longitude': '',
+                                            'latitude': '',
+                                            'longitudeDelta': '',
+                                            'latitudeDelta': '',
+                                            'email': userModel.getEmail(),
+                                            'todayDate': modelFromCalenderItems.getTodayDate(),
+                                            'start': modelFromCalenderItems.getStart(),
+                                            'end': modelFromCalenderItems.getEnd(),
+                                            'month': modelFromCalenderItems.getMonth(),
+                                            'day': modelFromCalenderItems.getDay(),
+                                            'dayName': modelFromCalenderItems.getDayName(),
+                                            "date": {
+                                                "date": modelFromCalenderItems.getDay(),
+                                                "month": modelFromCalenderItems.getMonth(),
+                                                "year": modelFromCalenderItems.getYear()
+                                            }
+                                        }
+                                    ], (isOk, msg) => {
+                                        if(isOk){
+                                            console.log(msg)
+                                        }else {
+                                            console.log(msg)
+                                        }
+
+                                    });
+
+                                    // setIsSave(true)
+                                    //setIsLogout(true)
+                                }
+
+
+                            }))
+
+                        } else {
+                            if (!isLogin) {
+                                setIsSave(false)
+                                setIsHome(true)
+                                setIsLogout(true)
+                            }
+
+                        }
+
+                }}>
+                    <Text style={[styles.appBarIcon,styles.save]}>
+                        Save
+                    </Text>
+                </TouchableOpacity>:null}
+                {isHome? <TouchableOpacity onPress={()=>{
+                    //setIsSave(true)
+                    setIsLogout(false)
+                    setIsRegister(false);
+                    setIsSave(true)
+                    setIsHome(false)
+                }}>
+                    <Text style={[styles.appBarIcon]}>
+                        <FontAwesome size={30} style={[styles.appBarIcon]} name={'home'}/>
+                    </Text>
+                </TouchableOpacity>:null}
+
+                <TouchableOpacity onPress={()=>{
+
+                    !isMenu ? setIsMenu(true):setIsMenu(false)
+                }}>
+                    <FontAwesome  size={24} style={[styles.appBarIcon,styles.bar]} name={'bars'} color={systemColor.color} />
+                </TouchableOpacity>
+            </View>
+            {isMenu? <MenuItemUnregistered isOk={!isUser} setIsRegister={setIsRegister} setIsLogout={setIsLogout} setIsItem={setIsItem} setIsMenu={setIsMenu}  setIsUser={setIsUser} setIsSave={setIsSave} setIsHome={setIsHome}/> :
+                null}
+        </View>
+        <View style={{flex:20}}>
+            <ScrollView   ref={scroll} onContentSizeChange={(contentWidth, contentHeight) =>{
+                scroll.current?.scrollToEnd({animated: true});
+            }} style={styles.scrollViewStyle}>
+                {isLogout? <Auth callback={((isOk:boolean,userData:any)  => {
+
+
+                    if(isOk){
+                        userData.isActive=isOk
+                        console.log(modelFromCalenderItems)
+                        setIsLogout(false)
+                        setIsLogin(true)
+                        setIsRegister(false)
+                        setIsProfile(false)
+                        setUserData(userData)
+                        setIsSave(true)
+                        setIsUser(true)
+                        setIsHome(false)
+
+                    }
+                })}  /> : isRegister ?<Register/>:<Dashboard dashboard={userData} />}
+            </ScrollView>
+        </View>
+
+        <View style={styles.footer}>
+
+        </View>
+    </View>
 }
 
 
